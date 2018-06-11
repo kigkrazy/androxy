@@ -30,5 +30,28 @@
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="15dp"
             android:text="@string/app_stop_service"/>
+
+        <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+            android:id="@+id/btn_app_request_ip"
+            style="@style/NormalRoundButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:text="@string/app_get_current_ip"/>
+
+        <TextView
+            android:id="@+id/txt_app_show_ip_title"
+            style="@style/QDCommonTitle"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:text="@string/app_show_ip_title"/>
+
+        <TextView
+            android:id="@+id/txt_app_show_ip_des"
+            style="@style/QDCommonDescription"
+            android:layout_marginHorizontal="15dp"
+            android:gravity="top"
+            android:text="@string/app_show_ip_description"/>
     </LinearLayout>
 </LinearLayout>
