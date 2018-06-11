@@ -3,8 +3,7 @@ package com.reizx.asf.di.component;
 import com.reizx.asf.app.App;
 import com.reizx.asf.di.module.AppModule;
 import com.reizx.asf.di.module.HttpModule;
-import com.reizx.asf.di.qualifier.IpQualifier;
-import com.reizx.asf.model.retrofit.service.IpApi;
+import com.reizx.asf.model.retrofit.api.IpApi;
 
 import javax.inject.Singleton;
 

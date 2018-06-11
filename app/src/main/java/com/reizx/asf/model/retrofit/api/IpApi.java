@@ -1,10 +1,8 @@
-package com.reizx.asf.model.retrofit.service;
+package com.reizx.asf.model.retrofit.api;
 
 import io.reactivex.Flowable;
 import okhttp3.ResponseBody;
-import retrofit2.Response;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public interface IpApi {
     String HOST = "http://2018.ip138.com/";

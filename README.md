@@ -7,6 +7,11 @@
 ## 使用方法
 直接下载项目，修改项目`包名`，`项目名`，`applicationId`等关键信息就可以进行开发了。
 
+### 添加Retrofit2请求接口
+1. 在`com.reizx.asf.model.retrofit.api`包下建立相关接口类
+2. `com.reizx.asf.di.component.AppComponent`类中添加相应的`component`接口
+3. 在`com.reizx.asf.di.module.HttpModule`填写相关provide接口
+
 ## 项目规范
 [安卓个人开发规范开发规范](https://kigkrazy.github.io/android/2018/01/11/android-develop-framework/)
 

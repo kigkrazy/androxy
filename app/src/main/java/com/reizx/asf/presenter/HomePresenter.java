@@ -6,12 +6,9 @@ import android.content.Intent;
 
 import com.reizx.asf.constant.Constants;
 import com.reizx.asf.contract.HomeConstract;
-import com.reizx.asf.di.qualifier.IpQualifier;
-import com.reizx.asf.model.retrofit.service.IpApi;
+import com.reizx.asf.model.retrofit.api.IpApi;
 import com.reizx.asf.service.ForegroundService;
 import com.reizx.asf.util.AsfMgrLog;
-
-import java.io.UnsupportedEncodingException;
 
 import javax.inject.Inject;
 
@@ -19,7 +16,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
-import okio.GzipSink;
 
 public class HomePresenter implements HomeConstract.Presenter{
     HomeConstract.View view;
