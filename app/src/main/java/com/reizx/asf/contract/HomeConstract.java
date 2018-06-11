@@ -10,7 +10,11 @@ import com.reizx.asf.view.common.BaseView;
  */
 public class HomeConstract {
     public interface View extends BaseView{
-
+        /**
+         * 设置当前IP
+         * @param ip
+         */
+        public void setCurrentIp(String ip);
     }
 
     public interface Presenter extends BasePresenter<View>{
@@ -33,5 +37,10 @@ public class HomeConstract {
          * 请求zookeeper的接口（用于测试）
          */
         void callHelloZkService();
+
+        /**
+         * 从IP138接口请求，并且显示当前IP
+         */
+        void showCurrentIp();
     }
 }

@@ -1,5 +1,7 @@
 package com.reizx.asf.view.fragment;
 
+import android.widget.TextView;
+
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.reizx.asf.R;
 import com.reizx.asf.contract.HomeConstract;
@@ -13,6 +15,9 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     @BindView(R.id.topbar)
     QMUITopBar mTopBar;
 
+    @BindView(R.id.tv_app_show_ip_des)
+    TextView tvIp;
+
     @OnClick(R.id.btn_app_start_service)
     public void startZkService(){
         presenter.startZkService(baseActivity);
@@ -21,6 +26,11 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     @OnClick(R.id.btn_app_stop_service)
     public void stopZkService(){
         presenter.stopZkService(baseActivity);
+    }
+
+    @OnClick(R.id.btn_app_request_ip)
+    public void requestIp(){
+        presenter.showCurrentIp();
     }
 
     @Override
@@ -66,5 +76,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     @Override
     public void stateMain() {
 
+    }
+
+    @Override
+    public void setCurrentIp(String ip) {
+        tvIp.setText(ip);
     }
 }

@@ -41,14 +41,14 @@
             android:text="@string/app_get_current_ip"/>
 
         <TextView
-            android:id="@+id/txt_app_show_ip_title"
+            android:id="@+id/tv_app_show_ip_title"
             style="@style/QDCommonTitle"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="15dp"
             android:text="@string/app_show_ip_title"/>
 
         <TextView
-            android:id="@+id/txt_app_show_ip_des"
+            android:id="@+id/tv_app_show_ip_des"
             style="@style/QDCommonDescription"
             android:layout_marginHorizontal="15dp"
             android:gravity="top"
