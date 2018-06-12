@@ -53,5 +53,12 @@
             android:layout_marginHorizontal="15dp"
             android:gravity="top"
             android:text="@string/app_show_ip_description"/>
+
+        <CheckBox
+            android:id="@+id/shenzhen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/qmui_s_checkbox"
+            android:text="深圳" />
     </LinearLayout>
 </LinearLayout>
