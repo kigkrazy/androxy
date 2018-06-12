@@ -15,4 +15,5 @@
 ## 项目规范
 [安卓个人开发规范开发规范](https://kigkrazy.github.io/android/2018/01/11/android-develop-framework/)
 
-
+## 相关依赖库推荐
+[andrutil](https://github.com/kigkrazy/andrutil)  
