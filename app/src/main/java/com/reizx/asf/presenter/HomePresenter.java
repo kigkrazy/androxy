@@ -7,6 +7,7 @@ import android.content.Intent;
 import com.reizx.asf.constant.Constants;
 import com.reizx.asf.contract.HomeConstract;
 import com.reizx.asf.model.retrofit.api.IpApi;
+import com.reizx.asf.presenter.common.BasePresenterImpl;
 import com.reizx.asf.service.ForegroundService;
 import com.reizx.asf.util.AsfMgrLog;
 
@@ -17,8 +18,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
-public class HomePresenter implements HomeConstract.Presenter{
-    HomeConstract.View view;
+public class HomePresenter extends BasePresenterImpl<HomeConstract.View> implements HomeConstract.Presenter{
     IpApi ipApi;
 
     @Inject
@@ -69,16 +69,6 @@ public class HomePresenter implements HomeConstract.Presenter{
                                    view.setCurrentIp(result);
                                }
                            });
-
-    }
-
-    @Override
-    public void attachView(HomeConstract.View view) {
-        this.view = view;
-    }
-
-    @Override
-    public void detachView() {
 
     }
 }

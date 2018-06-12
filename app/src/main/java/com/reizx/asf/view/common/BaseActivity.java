@@ -9,7 +9,7 @@ import com.reizx.asf.app.App;
 import com.reizx.asf.di.component.ActivityComponent;
 import com.reizx.asf.di.component.DaggerActivityComponent;
 import com.reizx.asf.di.module.ActivityModule;
-import com.reizx.asf.presenter.common.BasePresenter;
+import com.reizx.asf.presenter.common.IBasePresenter;
 
 import javax.inject.Inject;
 
@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  * Created by Kigkrazy on 2017/7/19.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatActivity implements BaseView {
     protected Activity activity;//当前Activity的上下文
 
     @Inject

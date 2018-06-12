@@ -2,7 +2,7 @@ package com.reizx.asf.contract;
 
 import android.content.Context;
 
-import com.reizx.asf.presenter.common.BasePresenter;
+import com.reizx.asf.presenter.common.IBasePresenter;
 import com.reizx.asf.view.common.BaseView;
 
 /**
@@ -17,7 +17,7 @@ public class HomeConstract {
         public void setCurrentIp(String ip);
     }
 
-    public interface Presenter extends BasePresenter<View>{
+    public interface Presenter extends IBasePresenter<View> {
         /**
          * 开始zookeeper的前台服务
          */

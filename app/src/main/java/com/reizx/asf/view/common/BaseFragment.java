@@ -11,7 +11,7 @@ import com.reizx.asf.app.App;
 import com.reizx.asf.di.component.DaggerFragmentComponent;
 import com.reizx.asf.di.component.FragmentComponent;
 import com.reizx.asf.di.module.FragmentModule;
-import com.reizx.asf.presenter.common.BasePresenter;
+import com.reizx.asf.presenter.common.IBasePresenter;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ import butterknife.Unbinder;
  * Created by Kigkrazy on 2017/7/31.
  */
 
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView{
+public abstract class BaseFragment<T extends IBasePresenter> extends Fragment implements BaseView{
     protected BaseActivity baseActivity;
     protected View rootView;
     private Unbinder unbinder;//ButterKnife 解绑对象

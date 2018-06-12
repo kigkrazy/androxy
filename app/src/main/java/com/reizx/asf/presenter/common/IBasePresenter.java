@@ -6,7 +6,7 @@ import com.reizx.asf.view.common.BaseView;
  * 基础的presenter类
  * @param <T>
  */
-public interface BasePresenter<T extends BaseView> {
+public interface IBasePresenter<T extends BaseView> {
     void attachView(T view);
 
     void detachView();

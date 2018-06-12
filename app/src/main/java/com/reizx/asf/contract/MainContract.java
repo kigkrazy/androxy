@@ -1,6 +1,6 @@
 package com.reizx.asf.contract;
 
-import com.reizx.asf.presenter.common.BasePresenter;
+import com.reizx.asf.presenter.common.IBasePresenter;
 import com.reizx.asf.view.common.BaseView;
 
 public class MainContract {
@@ -8,7 +8,7 @@ public class MainContract {
 
     }
 
-    public interface Presenter extends BasePresenter<View> {
+    public interface Presenter extends IBasePresenter<View> {
 
     }
 }
