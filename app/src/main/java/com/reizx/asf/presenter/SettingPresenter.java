@@ -1,22 +1,12 @@
 package com.reizx.asf.presenter;
 
 import com.reizx.asf.contract.SettingContract;
+import com.reizx.asf.presenter.common.BasePresenterImpl;
 
 import javax.inject.Inject;
 
-public class SettingPresenter implements SettingContract.Presenter{
-
+public class SettingPresenter extends BasePresenterImpl<SettingContract.View> implements SettingContract.Presenter{
     @Inject
     public SettingPresenter() {
-    }
-
-    @Override
-    public void attachView(SettingContract.View view) {
-
-    }
-
-    @Override
-    public void detachView() {
-
     }
 }
