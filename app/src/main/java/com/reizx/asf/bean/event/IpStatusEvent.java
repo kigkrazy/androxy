@@ -1,4 +1,4 @@
-package com.reizx.asf.model.event;
+package com.reizx.asf.bean.event;
 
 /**
  * ip状态通知事件

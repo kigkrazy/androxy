@@ -1,8 +1,8 @@
 package com.reizx.asf.presenter;
 
+import com.reizx.asf.bean.event.IpStatusEvent;
 import com.reizx.asf.component.RxBus;
 import com.reizx.asf.contract.SettingContract;
-import com.reizx.asf.model.event.IpStatusEvent;
 import com.reizx.asf.presenter.common.BasePresenterImpl;
 
 import javax.inject.Inject;

@@ -30,7 +30,6 @@ public class RxBus {
         return rxBus;
     }
 
-
     // 提供了一个新的事件
     public void post(Object o) {
         flowableProcessor.onNext(o);

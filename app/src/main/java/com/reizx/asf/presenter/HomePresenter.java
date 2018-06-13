@@ -7,7 +7,7 @@ import android.content.Intent;
 import com.reizx.asf.component.RxBus;
 import com.reizx.asf.constant.Constants;
 import com.reizx.asf.contract.HomeConstract;
-import com.reizx.asf.model.event.IpStatusEvent;
+import com.reizx.asf.bean.event.IpStatusEvent;
 import com.reizx.asf.model.retrofit.api.IpApi;
 import com.reizx.asf.presenter.common.BasePresenterImpl;
 import com.reizx.asf.service.ForegroundService;
