@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 
+import com.reizx.asf.component.RxBus;
 import com.reizx.asf.constant.Constants;
 import com.reizx.asf.contract.HomeConstract;
+import com.reizx.asf.model.event.IpStatusEvent;
 import com.reizx.asf.model.retrofit.api.IpApi;
 import com.reizx.asf.presenter.common.BasePresenterImpl;
 import com.reizx.asf.service.ForegroundService;
@@ -67,6 +69,8 @@ public class HomePresenter extends BasePresenterImpl<HomeConstract.View> impleme
                                public void accept(ResponseBody responseBody) throws Exception {
                                    String result = new String(responseBody.bytes(), "GB2312");
                                    view.setCurrentIp(result);
+                                   String timestamp = "" + System.currentTimeMillis();
+                                   RxBus.getInstance().post(new IpStatusEvent(timestamp, result));
                                }
                            });
 

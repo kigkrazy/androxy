@@ -1,5 +1,7 @@
 package com.reizx.asf.view.fragment;
 
+import android.widget.TextView;
+
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.reizx.asf.R;
 import com.reizx.asf.contract.SettingContract;
@@ -11,6 +13,9 @@ import butterknife.BindView;
 public class SettingFragment extends BaseFragment<SettingPresenter> implements SettingContract.View {
     @BindView(R.id.topbar)
     QMUITopBar mTopBar;
+
+    @BindView(R.id.tv_setting_page_show_ip_des)
+    TextView tvIpStatus;
 
     @Override
     public int getFragmentLayoutID() {
@@ -30,5 +35,10 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
 
     public void initTopBar() {
         mTopBar.setTitle("设置");
+    }
+
+    @Override
+    public void showIpStatus(String msg) {
+        tvIpStatus.setText(msg);
     }
 }
