@@ -1,12 +1,15 @@
 package com.reizx.asf.view.common;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.reizx.asf.app.App;
 import com.reizx.asf.di.component.DaggerFragmentComponent;
 import com.reizx.asf.di.component.FragmentComponent;
@@ -25,6 +28,7 @@ import butterknife.Unbinder;
 public abstract class BaseFragment<T extends IBasePresenter> extends Fragment implements BaseView{
     protected BaseActivity baseActivity;
     protected View rootView;
+    QMUITipDialog tipDialog;
     private Unbinder unbinder;//ButterKnife 解绑对象
 
     @Inject
@@ -122,5 +126,32 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     @Override
     public void stateMain() {
 
+    }
+
+    @Override
+    public void toast(String msg) {
+        ToastUtils.showLong(msg);
+    }
+
+    @Override
+    public void showTip(int iconType, @NonNull String tipWord) {
+        tipDialog = new QMUITipDialog.Builder(app)
+                .setTipWord(tipWord)
+                .setIconType(iconType)
+                .create();
+        tipDialog.show();
+    }
+
+    @Override
+    public void showTip(@NonNull String tipWord) {
+        tipDialog = new QMUITipDialog.Builder(app)
+                .setTipWord(tipWord)
+                .create();
+        tipDialog.show();
+    }
+
+    @Override
+    public void dismissTip() {
+        tipDialog.dismiss();
     }
 }

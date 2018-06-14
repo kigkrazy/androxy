@@ -2,9 +2,12 @@ package com.reizx.asf.view.common;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.reizx.asf.app.App;
 import com.reizx.asf.di.component.ActivityComponent;
 import com.reizx.asf.di.component.DaggerActivityComponent;
@@ -21,6 +24,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatActivity implements BaseView {
     protected Activity activity;//当前Activity的上下文
+    QMUITipDialog tipDialog;
 
     @Inject
     protected T presenter;
@@ -116,5 +120,32 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     @Override
     public void stateMain() {
 
+    }
+
+    @Override
+    public void toast(String msg) {
+        ToastUtils.showLong(msg);
+    }
+
+    @Override
+    public void showTip(int iconType, @NonNull String tipWord) {
+        tipDialog = new QMUITipDialog.Builder(app)
+                .setTipWord(tipWord)
+                .setIconType(iconType)
+                .create();
+        tipDialog.show();
+    }
+
+    @Override
+    public void showTip(@NonNull String tipWord) {
+        tipDialog = new QMUITipDialog.Builder(app)
+                .setTipWord(tipWord)
+                .create();
+        tipDialog.show();
+    }
+
+    @Override
+    public void dismissTip() {
+        tipDialog.dismiss();
     }
 }

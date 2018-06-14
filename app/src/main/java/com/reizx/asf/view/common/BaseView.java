@@ -1,5 +1,9 @@
 package com.reizx.asf.view.common;
 
+import android.support.annotation.NonNull;
+
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
+
 public interface BaseView {
 
     /**
@@ -33,4 +37,29 @@ public interface BaseView {
      * 界面状态执行
      */
     void stateMain();
+
+    /**
+     * Toast msg
+     */
+    void toast(String msg);
+
+    /**
+     * 显示提示
+     * @param iconType QMUI的几种内置的图标类型, 不显示请置为 -1
+     * @param tipWord 提示语
+     */
+    void showTip(@QMUITipDialog.Builder.IconType int iconType, @NonNull String tipWord);
+
+
+    /**
+     * 显示提示
+     * @param tipWord 提示语
+     */
+    void showTip(@NonNull String tipWord);
+
+
+    /**
+     * 解除提示
+     */
+    void dismissTip();
 }
