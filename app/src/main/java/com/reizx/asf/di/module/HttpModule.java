@@ -86,21 +86,6 @@ public class HttpModule {
         return builder.build();
     }
 
-    @Singleton
-    @Provides
-    @IpQualifier
-    Retrofit provideIpRetrofit(Retrofit.Builder builder, OkHttpClient client) {
-        return createRetrofit(builder, client, IpApi.HOST);
-    }
-
-    //todo 在这下面天下相关的请求接口Provides
-    @Singleton
-    @Provides
-    IpApi provideIpApi(@IpQualifier Retrofit retrofit) {
-        return retrofit.create(IpApi.class);
-    }
-
-
     /**
      * 创建Retrofit
      *
@@ -118,4 +103,20 @@ public class HttpModule {
                 .addConverterFactory(ScalarsConverterFactory.create())//将请求转换为String
                 .build();
     }
+
+    //todo 在这下面天下相关的请求接口Provides
+    //region ip状态请求接口
+    @Singleton
+    @Provides
+    @IpQualifier
+    Retrofit provideIpRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        return createRetrofit(builder, client, IpApi.HOST);
+    }
+
+    @Singleton
+    @Provides
+    IpApi provideIpApi(@IpQualifier Retrofit retrofit) {
+        return retrofit.create(IpApi.class);
+    }
+    //endregion
 }
