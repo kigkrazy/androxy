@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.NetworkUtils;
 import com.reizx.asf.constant.Constants;
 import com.reizx.asf.di.qualifier.IpQualifier;
 import com.reizx.asf.model.retrofit.api.IpApi;
+import com.reizx.asf.util.SSLSocketClient;
 
 import java.io.File;
 import java.io.IOException;
@@ -83,6 +84,12 @@ public class HttpModule {
         builder.writeTimeout(20, TimeUnit.SECONDS);
         //错误重连
         builder.retryOnConnectionFailure(true);
+
+        //todo 增加绕过HTTPS验证，如果需要去掉HTTPS验证，请将下面注释打开
+        //region绕过HTTPS验证, 如果不需要可以去掉
+//        builder.sslSocketFactory(SSLSocketClient.getSSLSocketFactory());
+//        builder.hostnameVerifier(SSLSocketClient.getHostnameVerifier());
+        //endregion
         return builder.build();
     }
 
