@@ -30,10 +30,35 @@ public class RxBus {
         return rxBus;
     }
 
-    // 提供了一个新的事件
+    /**
+     * 事件推送
+     * @param o
+     */
     public void post(Object o) {
         flowableProcessor.onNext(o);
     }
+
+    // 提供了一个新的事件
+
+    /**
+     * 延迟事件推送
+     * @param o 事件
+     * @param millis 
+     */
+    public void delayPost(final Object o, final long  millis) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(millis);
+                    flowableProcessor.onNext(o);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
 
     // 根据传递的 eventType 类型返回特定类型(eventType)的 被观察者
     public <T> Flowable<T> toFlowable(Class<T> eventType) {
