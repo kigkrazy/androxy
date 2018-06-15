@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ToastUtils;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.reizx.asf.app.App;
+import com.reizx.asf.bean.event.TipEvent;
+import com.reizx.asf.component.RxBus;
 import com.reizx.asf.di.component.DaggerFragmentComponent;
 import com.reizx.asf.di.component.FragmentComponent;
 import com.reizx.asf.di.module.FragmentModule;

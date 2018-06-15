@@ -43,9 +43,9 @@ public class RxBus {
     /**
      * 延迟事件推送
      * @param o 事件
-     * @param millis 
+     * @param millis
      */
-    public void delayPost(final Object o, final long  millis) {
+    public void postDelay(final Object o, final long  millis) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -56,7 +56,7 @@ public class RxBus {
                     e.printStackTrace();
                 }
             }
-        });
+        }).start();
     }
 
 

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
+import com.reizx.asf.bean.event.TipEvent;
 import com.reizx.asf.component.RxBus;
 import com.reizx.asf.constant.Constants;
 import com.reizx.asf.contract.HomeConstract;
@@ -61,6 +63,8 @@ public class HomePresenter extends BasePresenterImpl<HomeConstract.View> impleme
     public void showCurrentIp() {
         //view.setCurrentIp();
         AsfMgrLog.d("showCurrentIp...");
+        //view.showTip(QMUITipDialog.Builder.ICON_TYPE_LOADING, "正在请求");
+        RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.SHOW, QMUITipDialog.Builder.ICON_TYPE_LOADING, "正在请求"));
         ipApi.getCurrentIp()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -68,6 +72,11 @@ public class HomePresenter extends BasePresenterImpl<HomeConstract.View> impleme
                                @Override
                                public void accept(ResponseBody responseBody) throws Exception {
                                    String result = new String(responseBody.bytes(), "GB2312");
+                                   //todo 此处显示第二个TIP
+                                   RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.DISMISS, -1, null));
+                                   RxBus.getInstance().postDelay(new TipEvent(view.getClass().getName(), TipEvent.TipAction.DISMISS, -1, null), 5000);//销毁前一个TIP
+                                   RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.SHOW, QMUITipDialog.Builder.ICON_TYPE_SUCCESS, "请求成功"));//生成新TIP
+                                   RxBus.getInstance().postDelay(new TipEvent(view.getClass().getName(), TipEvent.TipAction.DISMISS, -1, null), 500);//延迟销毁TIP
                                    view.setCurrentIp(result);
                                    String timestamp = "" + System.currentTimeMillis();
                                    RxBus.getInstance().post(new IpStatusEvent(timestamp, result));

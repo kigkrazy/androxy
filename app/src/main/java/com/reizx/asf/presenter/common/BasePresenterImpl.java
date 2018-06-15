@@ -1,5 +1,7 @@
 package com.reizx.asf.presenter.common;
 
+import com.reizx.asf.R;
+import com.reizx.asf.bean.event.TipEvent;
 import com.reizx.asf.component.RxBus;
 import com.reizx.asf.view.common.BaseView;
 
@@ -63,6 +65,26 @@ public class BasePresenterImpl<T extends BaseView> implements IBasePresenter<T> 
      * 注册事件
      */
     public void registerEvent(){
+        addSubscribe(RxBus.getInstance().toFlowable(TipEvent.class)
+                .subscribe(new Consumer<TipEvent>() {
+                    @Override
+                    public void accept(TipEvent tipEvent) throws Exception {
+                        if (!view.getClass().getName().equals(tipEvent.getClazzName())){
+                            return;
+                        }
 
+                        if (tipEvent.getAction() == TipEvent.TipAction.DISMISS){
+                            view.dismissTip();
+                            return;
+                        }
+
+                        if (tipEvent.getIconType() == -1){
+                            view.showTip(tipEvent.getTipWord());
+                            return;
+                        }
+
+                        view.showTip(tipEvent.getIconType(), tipEvent.getTipWord());
+                    }
+                }));
     }
 }
