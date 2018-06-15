@@ -135,7 +135,8 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
 
     @Override
     public void showTip(int iconType, @NonNull String tipWord) {
-        tipDialog = new QMUITipDialog.Builder(app)
+        dismissTip();
+        tipDialog = new QMUITipDialog.Builder(getActivity())
                 .setTipWord(tipWord)
                 .setIconType(iconType)
                 .create();
@@ -144,7 +145,8 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
 
     @Override
     public void showTip(@NonNull String tipWord) {
-        tipDialog = new QMUITipDialog.Builder(app)
+        dismissTip();
+        tipDialog = new QMUITipDialog.Builder(getActivity())
                 .setTipWord(tipWord)
                 .create();
         tipDialog.show();
@@ -152,6 +154,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
 
     @Override
     public void dismissTip() {
-        tipDialog.dismiss();
+        if (tipDialog != null && tipDialog.isShowing())
+            tipDialog.dismiss();
     }
 }

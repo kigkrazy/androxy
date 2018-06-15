@@ -129,6 +129,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
 
     @Override
     public void showTip(int iconType, @NonNull String tipWord) {
+        dismissTip();
         tipDialog = new QMUITipDialog.Builder(app)
                 .setTipWord(tipWord)
                 .setIconType(iconType)
@@ -138,6 +139,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
 
     @Override
     public void showTip(@NonNull String tipWord) {
+        dismissTip();
         tipDialog = new QMUITipDialog.Builder(app)
                 .setTipWord(tipWord)
                 .create();
@@ -146,6 +148,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
 
     @Override
     public void dismissTip() {
-        tipDialog.dismiss();
+        if (tipDialog != null && tipDialog.isShowing())
+            tipDialog.dismiss();
     }
 }
