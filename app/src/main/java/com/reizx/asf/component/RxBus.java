@@ -38,8 +38,6 @@ public class RxBus {
         flowableProcessor.onNext(o);
     }
 
-    // 提供了一个新的事件
-
     /**
      * 延迟事件推送
      * @param o 事件
