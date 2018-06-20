@@ -57,7 +57,8 @@ public class MainFragment extends BaseFragment<MainPresenter> implements MainCon
         //region 初始化ViewPage
         mPages.put(Pager.HOME, new HomeFragment());
         mPages.put(Pager.SETTING, new SettingFragment());
-        MainPageAdapter mainPageAdapter = new MainPageAdapter(getFragmentManager(), mPages);
+        MainPageAdapter mainPageAdapter = new MainPageAdapter(getChildFragmentManager(), mPages);//解决多层嵌套fragment，在fragment切换时候空白问题
+        //MainPageAdapter mainPageAdapter = new MainPageAdapter(getFragmentManager(), mPages);
         mViewPager.setAdapter(mainPageAdapter);
         //endregion
 
