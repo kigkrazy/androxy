@@ -69,6 +69,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (rootView != null)
+            return rootView;
+
         rootView = inflater.inflate(getFragmentLayoutID(), container, false);
         unbinder = ButterKnife.bind(this, rootView);
         baseActivity = (BaseActivity) getActivity();
@@ -81,7 +84,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        // 去除绑定，避免fragment恢复的是时候view被解绑
+        //todo 此处会不会造成内存泄露？保持疑问！！因为ButterKnife理论上回随着view销毁,所以此处保留意见
+        //unbinder.unbind();
     }
 
     /**
