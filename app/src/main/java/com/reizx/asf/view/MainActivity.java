@@ -2,6 +2,7 @@ package com.reizx.asf.view;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.support.v4.app.Fragment;
 
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.reizx.asf.R;
@@ -70,5 +71,21 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                 }
             }
         });
+    }
+
+    /**
+     * 切换主fragment
+     * @param fragment
+     */
+    @Override
+    public void startFragment(Fragment fragment) {
+        String tagName = fragment.getClass().getSimpleName();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(R.id.fragment_app_main, fragment, tagName)
+                .addToBackStack(tagName)
+                .commit();
     }
 }
