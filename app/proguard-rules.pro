@@ -56,6 +56,12 @@
 
 #--------------------------------------------------------------------------------------------
 # 第三方库
+
+## qmui [version 1.1.5]
+-keep class com.qmuiteam.qmui.** { *; }
+-dontwarn com.qmuiteam.qmui.widget.**
+## qmui
+
 ## retrofit2[version 2.1.0]
 # Platform calls Class.forName on types which do not exist on Android to determine platform.
 -dontnote retrofit2.Platform
