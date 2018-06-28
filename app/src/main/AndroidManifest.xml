@@ -18,8 +18,13 @@
         android:name=".app.App">
 
         <!-- android:screenOrientation="portrait" 限制只能竖屏显示 -->
+        <!--关闭软键盘自动弹出-->
         <activity android:name=".view.MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -47,3 +47,6 @@ public class HttpModule {
 
 ## 相关依赖库推荐
 [andrutil](https://github.com/kigkrazy/andrutil)  
+
+## 更新
+[更新日志](UPDATE_LOG.md)
