@@ -14,6 +14,7 @@ import com.reizx.asf.model.retrofit.api.IpApi;
 import com.reizx.asf.presenter.common.BasePresenterImpl;
 import com.reizx.asf.service.ForegroundService;
 import com.reizx.asf.util.AsfMgrLog;
+import com.reizx.asf.util.RxUtil;
 
 import javax.inject.Inject;
 
@@ -66,8 +67,7 @@ public class HomePresenter extends BasePresenterImpl<HomeConstract.View> impleme
         //view.showTip(QMUITipDialog.Builder.ICON_TYPE_LOADING, "正在请求");
         RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.SHOW, QMUITipDialog.Builder.ICON_TYPE_LOADING, "正在请求"));
         ipApi.getCurrentIp()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxUtil.<ResponseBody>rxSchedulerHelper())
                 .subscribe(new Consumer<ResponseBody>() {
                                @Override
                                public void accept(ResponseBody responseBody) throws Exception {
