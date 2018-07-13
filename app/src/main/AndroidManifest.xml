@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--读取手机信息权限-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--开机启动权限-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -43,5 +46,18 @@
         <receiver
             android:name=".service.ForegroundService$NotificationClickReceiver"
             android:enabled="true" />
+
+        <!--开机启动广播-->
+        <!--目前广播并无实际执行内容，如果不需要可以去掉-->
+        <receiver
+            android:name=".broadcast.BootBroadcast"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TEST" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
