@@ -7,6 +7,7 @@ import com.blankj.utilcode.util.Utils;
 import com.reizx.asf.di.component.AppComponent;
 import com.reizx.asf.di.component.DaggerAppComponent;
 import com.reizx.asf.di.module.AppModule;
+import com.reizx.asf.di.module.HttpModule;
 import com.reizx.asf.util.AsfMgrLog;
 
 /**j
@@ -35,6 +36,7 @@ public class App extends Application {
         if (appComponent == null) {
             appComponent = DaggerAppComponent.builder()
                     .appModule(new AppModule(app))
+                    .httpModule(new HttpModule())
                     .build();
         }
         return appComponent;
