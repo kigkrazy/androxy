@@ -4,13 +4,17 @@ import android.app.Application;
 import android.util.Log;
 
 import com.blankj.utilcode.util.Utils;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.FormatStrategy;
+import com.orhanobut.logger.PrettyFormatStrategy;
 import com.reizx.asf.di.component.AppComponent;
 import com.reizx.asf.di.component.DaggerAppComponent;
 import com.reizx.asf.di.module.AppModule;
 import com.reizx.asf.di.module.HttpModule;
 import com.reizx.asf.util.AsfMgrLog;
 
-/**j
+/**
+ * j
  * Created by kigkrazy on 18-5-10.
  */
 
@@ -24,15 +28,25 @@ public class App extends Application {
         app = this;
         //初始化日志环境，设置全局
         Log.d("Ares-Mgr", "Ares-Mgr onCreate...");
-        AsfMgrLog.initLog("Ares-Mgr", true, false, null, null, 50);
+        initLog();
         Utils.init(this);//初始化AndroidUtilCode库
+    }
+
+    public void initLog() {
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
+                .methodCount(0)         // (Optional) How many method line to show. Default 2
+                //.methodOffset(5)        // (Optional) Hides internal method calls up to offset. Default 5
+                .tag("asf-log")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .build();
+        AsfMgrLog.addLogAdapter(new AndroidLogAdapter(formatStrategy));//默认的安卓打印
     }
 
     public static App getInstance() {
         return app;
     }
 
-    public static AppComponent getAppComponent(){
+    public static AppComponent getAppComponent() {
         if (appComponent == null) {
             appComponent = DaggerAppComponent.builder()
                     .appModule(new AppModule(app))

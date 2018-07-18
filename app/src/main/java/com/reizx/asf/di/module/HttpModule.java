@@ -3,6 +3,7 @@ package com.reizx.asf.di.module;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.reizx.asf.constant.Constants;
 import com.reizx.asf.di.qualifier.IpQualifier;
+import com.reizx.asf.model.DataManager;
 import com.reizx.asf.model.retrofit.api.IpApi;
 import com.reizx.asf.util.SSLSocketClient;
 
@@ -109,6 +110,13 @@ public class HttpModule {
                 //.addConverterFactory(GsonConverterFactory.create())//将JSON格式的respon转为对象
                 .addConverterFactory(ScalarsConverterFactory.create())//将请求转换为String
                 .build();
+    }
+
+
+    @Singleton
+    @Provides
+    DataManager provideDataManager(Retrofit.Builder builder, OkHttpClient client){
+        return new DataManager(builder, client);
     }
 
     //todo 在这下面天下相关的请求接口Provides
