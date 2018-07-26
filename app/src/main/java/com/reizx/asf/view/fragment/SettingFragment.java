@@ -3,8 +3,6 @@ package com.reizx.asf.view.fragment;
 import android.annotation.SuppressLint;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.AppUtils;
-import com.blankj.utilcode.util.ShellUtils;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.reizx.asf.R;
 import com.reizx.asf.contract.SettingContract;
@@ -13,7 +11,6 @@ import com.reizx.asf.util.AsfMgrLog;
 import com.reizx.asf.util.RxUtil;
 import com.reizx.asf.view.common.BaseFragment;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -28,9 +25,7 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
 
     @BindView(R.id.tv_setting_page_show_ip_des)
     TextView tvIpStatus;
-
     Disposable ds;
-
 
     @SuppressLint("CheckResult")
     @OnClick(R.id.btn_setting_page_test)
