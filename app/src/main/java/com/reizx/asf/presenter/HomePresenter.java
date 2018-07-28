@@ -24,11 +24,12 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
 public class HomePresenter extends BasePresenterImpl<HomeConstract.View> implements HomeConstract.Presenter{
+    @Inject
     IpApi ipApi;
 
     @Inject
-    public HomePresenter(IpApi ipApi) {
-        this.ipApi = ipApi;
+    public HomePresenter() {
+        //TODO 构造函数
     }
 
     /**
