@@ -40,6 +40,16 @@
             android:layout_marginHorizontal="15dp"
             android:text="@string/app_get_current_ip"/>
 
+
+        <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+            android:id="@+id/btn_app_andromeda_call"
+            style="@style/NormalRoundButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:text="@string/app_get_andromeda_call"/>
+
         <TextView
             android:id="@+id/tv_app_show_ip_title"
             style="@style/QDCommonTitle"

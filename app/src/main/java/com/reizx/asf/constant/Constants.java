@@ -17,6 +17,7 @@ public class Constants {
     //================= PATH ====================
     public static final String PATH_DATA = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";//获取data文件夹
     public static final String PATH_CACHE = PATH_DATA + "/NetCache";//网络缓存文件夹
+    public static final String LOG_DIR = PATH_DATA + "/log";//log文件夹
     public static final String PATH_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + App.getInstance().getPackageName();//sd卡下以包名为名称的文件夹
 
 

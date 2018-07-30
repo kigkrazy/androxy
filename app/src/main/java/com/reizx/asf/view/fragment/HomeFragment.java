@@ -11,7 +11,7 @@ import com.reizx.asf.view.common.BaseFragment;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class HomeFragment extends BaseFragment<HomePresenter> implements HomeConstract.View{
+public class HomeFragment extends BaseFragment<HomePresenter> implements HomeConstract.View {
     @BindView(R.id.topbar)
     QMUITopBar mTopBar;
 
@@ -19,18 +19,23 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     TextView tvIp;
 
     @OnClick(R.id.btn_app_start_service)
-    public void startZkService(){
+    public void startZkService() {
         presenter.startZkService(baseActivity);
     }
 
     @OnClick(R.id.btn_app_stop_service)
-    public void stopZkService(){
+    public void stopZkService() {
         presenter.stopZkService(baseActivity);
     }
 
     @OnClick(R.id.btn_app_request_ip)
-    public void requestIp(){
+    public void requestIp() {
         presenter.showCurrentIp();
+    }
+
+    @OnClick
+    public void andromedaCall() {
+
     }
 
     @Override
@@ -49,7 +54,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         getFragmentComponent().Inject(this);
     }
 
-    public void initTopBar(){
+    public void initTopBar() {
         mTopBar.setTitle("主页");
     }
 
