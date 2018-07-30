@@ -23,6 +23,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 @Module
@@ -107,7 +108,7 @@ public class HttpModule {
                 .baseUrl(url)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                //.addConverterFactory(GsonConverterFactory.create())//将JSON格式的respon转为对象
+                .addConverterFactory(GsonConverterFactory.create())//将JSON格式的respon转为对象
                 .addConverterFactory(ScalarsConverterFactory.create())//将请求转换为String
                 .build();
     }
@@ -115,7 +116,7 @@ public class HttpModule {
 
     @Singleton
     @Provides
-    DataManager provideDataManager(Retrofit.Builder builder, OkHttpClient client){
+    DataManager provideDataManager(Retrofit.Builder builder, OkHttpClient client) {
         return new DataManager(builder, client);
     }
 

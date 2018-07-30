@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'org.qiyi.svg.plugin'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -37,7 +39,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //一些常用类库
-    api 'com.reizx:andrutil:1.7.7'
+    api 'com.reizx:andrutil:1.8.1'
     //qmui库，腾讯出品的UI库(https://github.com/QMUI/QMUI_Android)
     api 'com.qmuiteam:qmui:1.1.5'
     // butterknife库 一个用于UI注入的库
@@ -46,4 +48,5 @@ dependencies {
     //dagger2
     api 'com.google.dagger:dagger:2.4'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.4'
+    api "org.qiyi.video.svg:core:1.1.8"
 }
