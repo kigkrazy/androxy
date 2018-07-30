@@ -1,12 +1,17 @@
 package com.reizx.asf.view.fragment;
 
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.widget.TextView;
 
 import com.qmuiteam.qmui.widget.QMUITopBar;
+import com.reizx.asf.IAndromedaInf;
 import com.reizx.asf.R;
 import com.reizx.asf.contract.HomeConstract;
 import com.reizx.asf.presenter.HomePresenter;
 import com.reizx.asf.view.common.BaseFragment;
+
+import org.qiyi.video.svg.Andromeda;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,9 +38,21 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         presenter.showCurrentIp();
     }
 
-    @OnClick
+    @OnClick(R.id.btn_app_andromeda_call)
     public void andromedaCall() {
-
+        IBinder binder = Andromeda.with(app).getRemoteService(IAndromedaInf.class);
+        if (binder == null) {
+            return;
+        }
+        IAndromedaInf andromedaInf = IAndromedaInf.Stub.asInterface(binder);
+        if (andromedaInf == null) {
+            return;
+        }
+        try {
+            andromedaInf.remoteCall();
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override

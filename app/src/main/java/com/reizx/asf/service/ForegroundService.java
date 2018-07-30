@@ -78,7 +78,7 @@ public class ForegroundService extends Service {
 
             @Override
             public void remoteCall() throws RemoteException {
-                AsfMgrLog.d("");
+                AsfMgrLog.d("remoteCall success...");
             }
         });
     }
