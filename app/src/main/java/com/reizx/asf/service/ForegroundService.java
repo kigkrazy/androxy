@@ -8,11 +8,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
+import com.reizx.asf.IAndromedaInf;
 import com.reizx.asf.R;
 import com.reizx.asf.constant.Constants;
 import com.reizx.asf.util.AsfLog;
+
+import org.qiyi.video.svg.Andromeda;
 
 /**
  * Created by kigkrazy on 18-5-10.
@@ -20,6 +24,7 @@ import com.reizx.asf.util.AsfLog;
 
 public class ForegroundService extends Service {
     public final static String TAG = "ForegroundService";
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -36,6 +41,7 @@ public class ForegroundService extends Service {
                 R.mipmap.ic_launcher,
                 Constants.FORGROUND_SERVICE_ID);
         //notificationManager.notify(1, notification);
+        registerAndromeda();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -45,8 +51,7 @@ public class ForegroundService extends Service {
     }
 
 
-
-    public void setNotification(String title, String description, int smallIcon, int bigIcon, int forgroundServiceId){
+    public void setNotification(String title, String description, int smallIcon, int bigIcon, int forgroundServiceId) {
         // 在API11之后构建Notification的方式
         //NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification.Builder builder = new Notification.Builder(this.getApplicationContext()); //获取一个Notification构造器
@@ -62,6 +67,20 @@ public class ForegroundService extends Service {
         notification.defaults = Notification.DEFAULT_SOUND; //设置为默认的声音
         startForeground(forgroundServiceId, notification);
         //notificationManager.notify(1, notification);
+    }
+
+    public void registerAndromeda() {
+        Andromeda.registerRemoteService(IAndromedaInf.class, new IAndromedaInf.Stub() {
+            @Override
+            public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
+
+            }
+
+            @Override
+            public void remoteCall() throws RemoteException {
+                AsfLog.d("remoteCall success...");
+            }
+        });
     }
 
     /**

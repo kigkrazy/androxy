@@ -1,17 +1,22 @@
 package com.reizx.asf.view.fragment;
 
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.widget.TextView;
 
 import com.qmuiteam.qmui.widget.QMUITopBar;
+import com.reizx.asf.IAndromedaInf;
 import com.reizx.asf.R;
 import com.reizx.asf.contract.HomeConstract;
 import com.reizx.asf.presenter.HomePresenter;
 import com.reizx.asf.view.common.BaseFragment;
 
+import org.qiyi.video.svg.Andromeda;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class HomeFragment extends BaseFragment<HomePresenter> implements HomeConstract.View{
+public class HomeFragment extends BaseFragment<HomePresenter> implements HomeConstract.View {
     @BindView(R.id.topbar)
     QMUITopBar mTopBar;
 
@@ -19,18 +24,35 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     TextView tvIp;
 
     @OnClick(R.id.btn_app_start_service)
-    public void startZkService(){
+    public void startZkService() {
         presenter.startZkService(baseActivity);
     }
 
     @OnClick(R.id.btn_app_stop_service)
-    public void stopZkService(){
+    public void stopZkService() {
         presenter.stopZkService(baseActivity);
     }
 
     @OnClick(R.id.btn_app_request_ip)
-    public void requestIp(){
+    public void requestIp() {
         presenter.showCurrentIp();
+    }
+
+    @OnClick(R.id.btn_app_andromeda_call)
+    public void andromedaCall() {
+        IBinder binder = Andromeda.with(app).getRemoteService(IAndromedaInf.class);
+        if (binder == null) {
+            return;
+        }
+        IAndromedaInf andromedaInf = IAndromedaInf.Stub.asInterface(binder);
+        if (andromedaInf == null) {
+            return;
+        }
+        try {
+            andromedaInf.remoteCall();
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -49,7 +71,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         getFragmentComponent().Inject(this);
     }
 
-    public void initTopBar(){
+    public void initTopBar() {
         mTopBar.setTitle("主页");
     }
 

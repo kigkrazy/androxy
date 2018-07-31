@@ -10,6 +10,7 @@ import com.reizx.asf.di.module.AppModule;
 import com.reizx.asf.di.module.HttpModule;
 
 import static com.reizx.asf.util.AsfLog.initLog;
+import org.qiyi.video.svg.Andromeda;
 
 /**
  * j
@@ -25,9 +26,11 @@ public class App extends Application {
         super.onCreate();
         app = this;
         //初始化日志环境，设置全局
-        Log.d("asf-tag", "Ares-Mgr onCreate...");
+
+        Log.d("asf-tag", "asf-tag onCreate...");
         initLog("asf-tag");
         Utils.init(this);//初始化AndroidUtilCode库
+        Andromeda.init(app);
     }
 
     public static App getInstance() {

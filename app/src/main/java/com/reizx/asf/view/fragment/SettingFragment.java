@@ -3,6 +3,7 @@ package com.reizx.asf.view.fragment;
 import android.annotation.SuppressLint;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ShellUtils;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.reizx.asf.R;
 import com.reizx.asf.contract.SettingContract;
@@ -56,11 +57,8 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
 
     @OnClick(R.id.btn_setting_page_xlog)
     public void printXlog(){
-        AsfLog.d("xxxxxxxxx");
-        AsfLog.d("xxxxxxxxx");
-        AsfLog.d("xxxxxxxxx");
-        AsfLog.d("xxxxxxxxx");
-        AsfLog.d("xxxxxxxxx");
+        String cmd = "ls /data/app";
+        ShellUtils.CommandResult cr = ShellUtils.execCmd(cmd, true);
     }
 
     @Override
