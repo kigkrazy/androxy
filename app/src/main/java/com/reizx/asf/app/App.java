@@ -25,8 +25,8 @@ public class App extends Application {
         super.onCreate();
         app = this;
         //初始化日志环境，设置全局
-        Log.d("Ares-Mgr", "Ares-Mgr onCreate...");
-        initLog("Ares-Mgr");
+        Log.d("asf-tag", "Ares-Mgr onCreate...");
+        initLog("asf-tag");
         Utils.init(this);//初始化AndroidUtilCode库
     }
 
