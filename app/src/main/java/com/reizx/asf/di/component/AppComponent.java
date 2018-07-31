@@ -3,7 +3,7 @@ package com.reizx.asf.di.component;
 import com.reizx.asf.app.App;
 import com.reizx.asf.di.module.AppModule;
 import com.reizx.asf.di.module.HttpModule;
-import com.reizx.asf.model.retrofit.api.IpApi;
+import com.reizx.asf.model.DataManager;
 
 import javax.inject.Singleton;
 
@@ -18,6 +18,5 @@ import dagger.Component;
 public interface AppComponent {
     App getContext();  // 提供App的Context
 
-    //对所有的请求进行处理
-    IpApi getIpApi();//IP请求接口
+    DataManager getDataManager();//数据管理实例
 }

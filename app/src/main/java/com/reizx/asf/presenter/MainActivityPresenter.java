@@ -3,6 +3,7 @@ package com.reizx.asf.presenter;
 import com.reizx.asf.bean.event.ChangeMainFragmentEvent;
 import com.reizx.asf.component.RxBus;
 import com.reizx.asf.contract.MainActivityContract;
+import com.reizx.asf.model.DataManager;
 import com.reizx.asf.presenter.common.BasePresenterImpl;
 
 import javax.inject.Inject;
@@ -11,7 +12,8 @@ import io.reactivex.functions.Consumer;
 
 public class MainActivityPresenter extends BasePresenterImpl<MainActivityContract.View> implements MainActivityContract.Presenter {
     @Inject
-    public MainActivityPresenter() {
+    public MainActivityPresenter(DataManager dm) {
+        super(dm);
     }
 
     @Override

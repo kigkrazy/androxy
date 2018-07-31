@@ -3,6 +3,7 @@ package com.reizx.asf.presenter;
 import com.reizx.asf.bean.event.IpStatusEvent;
 import com.reizx.asf.component.RxBus;
 import com.reizx.asf.contract.SettingContract;
+import com.reizx.asf.model.DataManager;
 import com.reizx.asf.presenter.common.BasePresenterImpl;
 
 import javax.inject.Inject;
@@ -11,7 +12,8 @@ import io.reactivex.functions.Consumer;
 
 public class SettingPresenter extends BasePresenterImpl<SettingContract.View> implements SettingContract.Presenter{
     @Inject
-    public SettingPresenter() {
+    public SettingPresenter(DataManager dm) {
+        super(dm);
     }
 
     /**

@@ -3,6 +3,7 @@ package com.reizx.asf.presenter.common;
 import com.reizx.asf.R;
 import com.reizx.asf.bean.event.TipEvent;
 import com.reizx.asf.component.RxBus;
+import com.reizx.asf.model.DataManager;
 import com.reizx.asf.view.common.BaseView;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -12,7 +13,13 @@ import io.reactivex.functions.Consumer;
 public class BasePresenterImpl<T extends BaseView> implements IBasePresenter<T> {
     protected T view;
     // CompositeDisposable是Disposable的容器，用来快速解除订阅，管理多个Disposable的生命周期
+    public DataManager dm;// 数据管理
+
     protected CompositeDisposable compositeDisposable;
+
+    public BasePresenterImpl(DataManager dm) {
+        this.dm = dm;
+    }
 
     /**
      * 解除订阅

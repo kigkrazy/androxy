@@ -5,6 +5,7 @@ import com.reizx.asf.constant.Constants;
 import com.reizx.asf.di.qualifier.IpQualifier;
 import com.reizx.asf.model.DataManager;
 import com.reizx.asf.model.retrofit.api.IpApi;
+import com.reizx.asf.util.AsfLog;
 import com.reizx.asf.util.SSLSocketClient;
 
 import java.io.File;
@@ -79,6 +80,7 @@ public class HttpModule {
         //设置缓存
         builder.addNetworkInterceptor(cacheInterceptor);
         builder.addInterceptor(cacheInterceptor);
+        builder.addInterceptor(new LoggingInterceptor());//设置日志拦截器
         builder.cache(cache);
         //设置超时
         builder.connectTimeout(10, TimeUnit.SECONDS);
@@ -95,44 +97,22 @@ public class HttpModule {
         return builder.build();
     }
 
-    /**
-     * 创建Retrofit
-     *
-     * @param builder
-     * @param client
-     * @param url
-     * @return
-     */
-    private Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
-        return builder
-                .baseUrl(url)
-                .client(client)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())//将JSON格式的respon转为对象
-                .addConverterFactory(ScalarsConverterFactory.create())//将请求转换为String
-                .build();
-    }
-
-
     @Singleton
     @Provides
     DataManager provideDataManager(Retrofit.Builder builder, OkHttpClient client) {
         return new DataManager(builder, client);
     }
 
-    //todo 在这下面天下相关的请求接口Provides
-    //region ip状态请求接口
-    @Singleton
-    @Provides
-    @IpQualifier
-    Retrofit provideIpRetrofit(Retrofit.Builder builder, OkHttpClient client) {
-        return createRetrofit(builder, client, IpApi.HOST);
+    /**
+     * 日志拦截器
+     */
+    static class LoggingInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Interceptor.Chain chain) throws IOException {
+            Request request = chain.request();
+            AsfLog.d(String.format("Sending request %s on %s%n%s",
+                    request.url(), chain.connection(), request.headers()));
+            return chain.proceed(request);
+        }
     }
-
-    @Singleton
-    @Provides
-    IpApi provideIpApi(@IpQualifier Retrofit retrofit) {
-        return retrofit.create(IpApi.class);
-    }
-    //endregion
 }

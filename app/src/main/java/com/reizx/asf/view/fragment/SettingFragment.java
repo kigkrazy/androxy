@@ -57,8 +57,7 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
 
     @OnClick(R.id.btn_setting_page_xlog)
     public void printXlog(){
-        String cmd = "ls /data/app";
-        ShellUtils.CommandResult cr = ShellUtils.execCmd(cmd, true);
+        AsfLog.d("start exec ...");
     }
 
     @Override

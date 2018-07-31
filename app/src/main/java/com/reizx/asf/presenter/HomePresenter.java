@@ -10,6 +10,7 @@ import com.reizx.asf.component.RxBus;
 import com.reizx.asf.constant.Constants;
 import com.reizx.asf.contract.HomeConstract;
 import com.reizx.asf.bean.event.IpStatusEvent;
+import com.reizx.asf.model.DataManager;
 import com.reizx.asf.model.retrofit.api.IpApi;
 import com.reizx.asf.presenter.common.BasePresenterImpl;
 import com.reizx.asf.service.ForegroundService;
@@ -23,11 +24,8 @@ import okhttp3.ResponseBody;
 
 public class HomePresenter extends BasePresenterImpl<HomeConstract.View> implements HomeConstract.Presenter{
     @Inject
-    IpApi ipApi;
-
-    @Inject
-    public HomePresenter() {
-        //TODO 构造函数
+    public HomePresenter(DataManager dm) {
+        super(dm);
     }
 
     /**
@@ -65,7 +63,7 @@ public class HomePresenter extends BasePresenterImpl<HomeConstract.View> impleme
         AsfLog.d("showCurrentIp...");
         //view.showTip(QMUITipDialog.Builder.ICON_TYPE_LOADING, "正在请求");
         RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.SHOW, QMUITipDialog.Builder.ICON_TYPE_LOADING, "正在请求"));
-        ipApi.getCurrentIp()
+        dm.getIpApi().getCurrentIp()
                 .compose(RxUtil.<ResponseBody>rxSchedulerHelper())
                 .subscribe(new Consumer<ResponseBody>() {
                                @Override
