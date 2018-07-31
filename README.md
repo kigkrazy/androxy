@@ -9,38 +9,25 @@
 
 ### 添加Retrofit2请求接口(此处我们以`IpApi`为例)
 1. 在`com.reizx.asf.model.retrofit.api`包下建立相关接口类(`IpApi`)
-2. 在`com.reizx.zues.di.qualifier`包下添加相关的`qualifier`类(`IpQualifier`)
-3. `com.reizx.asf.di.component.AppComponent`类中添加相应的`component`接口
+2. 在`com.reizx.ares.mgr.model.DataManager#createAllApi`的构造函数添加对应API的实例创建
 ```java
-@Singleton
-@Component(modules = {AppModule.class, HttpModule.class})
-public interface AppComponent {
-    App getContext();  // 提供App的Context
+    private UpdateApi updateApi;//此处声明
 
-    //对所有的请求进行处理
-    IpApi getIpApi();//IP请求接口 -----此处为添加的
-}
-```
-4. 在`com.reizx.asf.di.module.HttpModule`填写相关Retrofit接口与`IpApi`接口
-```java
-@Module
-public class HttpModule {
-    //...
-    @Singleton
-    @Provides
-    @IpQualifier
-    Retrofit provideIpRetrofit(Retrofit.Builder builder, OkHttpClient client) {
-        return createRetrofit(builder, client, IpApi.HOST);
+    public DataManager(Retrofit.Builder builder, OkHttpClient client){
+        createAllApi(builder, client);
     }
 
-    @Singleton
-    @Provides
-    IpApi provideIpApi(@IpQualifier Retrofit retrofit) {
-        return retrofit.create(IpApi.class);
+    /**
+     * 创建所有API实例
+     * @param builder
+     * @param client
+     */
+    public void createAllApi(Retrofit.Builder builder, OkHttpClient client) {
+        // todo 此处添加所有需要的API
+        updateApi = createRetrofit(builder, client, UpdateApi.HOST).create(UpdateApi.class);//更新信息请求接口
     }
-    //...
-}
 ```
+**后续如果有其他类似`Sqlite`或者`sharedpreferences`管理接口也可以直接写在`DataManager`中。**
 
 ## 项目规范
 [安卓个人开发规范开发规范](https://kigkrazy.github.io/android/2018/01/11/android-develop-framework/)
