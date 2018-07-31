@@ -13,14 +13,12 @@ import com.reizx.asf.bean.event.IpStatusEvent;
 import com.reizx.asf.model.retrofit.api.IpApi;
 import com.reizx.asf.presenter.common.BasePresenterImpl;
 import com.reizx.asf.service.ForegroundService;
-import com.reizx.asf.util.AsfMgrLog;
+import com.reizx.asf.util.AsfLog;
 import com.reizx.asf.util.RxUtil;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
 public class HomePresenter extends BasePresenterImpl<HomeConstract.View> implements HomeConstract.Presenter{
@@ -63,7 +61,7 @@ public class HomePresenter extends BasePresenterImpl<HomeConstract.View> impleme
     @Override
     public void showCurrentIp() {
         //view.setCurrentIp();
-        AsfMgrLog.d("showCurrentIp...");
+        AsfLog.d("showCurrentIp...");
         //view.showTip(QMUITipDialog.Builder.ICON_TYPE_LOADING, "正在请求");
         RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.SHOW, QMUITipDialog.Builder.ICON_TYPE_LOADING, "正在请求"));
         ipApi.getCurrentIp()

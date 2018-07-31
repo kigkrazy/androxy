@@ -3,22 +3,13 @@ package com.reizx.asf.view.fragment;
 import android.annotation.SuppressLint;
 import android.widget.TextView;
 
-import com.elvishew.xlog.LogConfiguration;
-import com.elvishew.xlog.LogLevel;
-import com.elvishew.xlog.XLog;
-import com.elvishew.xlog.flattener.DefaultFlattener;
-import com.elvishew.xlog.interceptor.BlacklistTagsFilterInterceptor;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.Printer;
-import com.elvishew.xlog.printer.file.FilePrinter;
-import com.elvishew.xlog.printer.file.backup.FileSizeBackupStrategy;
-import com.elvishew.xlog.printer.file.backup.NeverBackupStrategy;
-import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.reizx.asf.R;
 import com.reizx.asf.contract.SettingContract;
 import com.reizx.asf.presenter.SettingPresenter;
-import com.reizx.asf.util.AsfMgrLog;
+import com.reizx.asf.util.AsfLog;
 import com.reizx.asf.util.RxUtil;
 import com.reizx.asf.util.XLogUtilExt;
 import com.reizx.asf.view.common.BaseFragment;
@@ -43,25 +34,25 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
     @OnClick(R.id.btn_setting_page_test)
     public void clickTest(){
         if (ds != null && !ds.isDisposed()){
-            AsfMgrLog.d("dispose the subscribe...");
+            AsfLog.d("dispose the subscribe...");
             ds.dispose();
             ds = null;
             return;
         }
 
-        AsfMgrLog.d("click setting page test");
+        AsfLog.d("click setting page test");
         ds = Flowable.interval(1,  TimeUnit.SECONDS)
                 .onBackpressureDrop()
                 .compose(RxUtil.<Long>rxSchedulerHelper())
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        AsfMgrLog.d("the inter ... " + aLong);
+                        AsfLog.d("the inter ... " + aLong);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        AsfMgrLog.d("flow err : " + throwable);
+                        AsfLog.d("flow err : " + throwable);
                     }
                 });
     }

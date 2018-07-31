@@ -8,7 +8,7 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.reizx.asf.R;
 import com.reizx.asf.contract.MainActivityContract;
 import com.reizx.asf.presenter.MainActivityPresenter;
-import com.reizx.asf.util.AsfMgrLog;
+import com.reizx.asf.util.AsfLog;
 import com.reizx.asf.view.common.BaseActivity;
 import com.reizx.asf.view.fragment.MainFragment;
 import com.tbruyelle.rxpermissions2.Permission;
@@ -61,13 +61,13 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
             public void accept(Permission permission) throws Exception {
                 if (permission.granted) {
                     // 用户已经同意该权限
-                    AsfMgrLog.d(permission.name + " is granted.");
+                    AsfLog.d(permission.name + " is granted.");
                 } else if (permission.shouldShowRequestPermissionRationale) {
                     // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-                    AsfMgrLog.d(permission.name + " is denied. More info should be provided.");
+                    AsfLog.d(permission.name + " is denied. More info should be provided.");
                 } else {
                     // 用户拒绝了该权限，并且选中『不再询问』
-                    AsfMgrLog.d(permission.name + " is denied.");
+                    AsfLog.d(permission.name + " is denied.");
                 }
             }
         });
