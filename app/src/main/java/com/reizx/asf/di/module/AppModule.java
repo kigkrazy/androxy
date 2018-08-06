@@ -1,11 +1,14 @@
 package com.reizx.asf.di.module;
 
 import com.reizx.asf.app.App;
+import com.reizx.asf.model.DataManager;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
 
 /**
  * Created by kigkrazy on 18-5-12.
@@ -23,5 +26,11 @@ public class AppModule {
     @Singleton
     App provideApplicationContext() {
         return application;
+    }
+
+    @Singleton
+    @Provides
+    DataManager provideDataManager(App app, Retrofit.Builder builder, OkHttpClient client) {
+        return new DataManager(app, builder, client);
     }
 }
