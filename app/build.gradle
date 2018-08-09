@@ -39,7 +39,14 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //一些常用类库
-    api 'com.reizx:andrutil:1.8.1'
+    //一些常用类库
+    api('com.reizx:andrutil:1.8.1') {
+        //一个运行时HOOK库
+        exclude group: 'me.weishu:epic'
+        //一个通过扫描"/proc"文件夹获取安卓所有进程的库（5.x之后停用）
+        exclude group: 'com.jaredrummler'
+    }
+
     //qmui库，腾讯出品的UI库(https://github.com/QMUI/QMUI_Android)
     api 'com.qmuiteam:qmui:1.1.5'
     // butterknife库 一个用于UI注入的库
