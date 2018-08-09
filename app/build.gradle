@@ -11,6 +11,16 @@ android {
         versionCode 2
         versionName "1.8.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // 如果没有下面的NDK相关的配置，就算armeabi下有相关的so
+        // System.loadLibrary("jniutil");也会提示找不到so
+        //
+        // java.lang.UnsatisfiedLinkError: dalvik.system.PathClassLoader[DexPathList[[zip file "/data/app/com.reizx.asf-2/base.apk"],nativeLibraryDirectories=[/data/app/com.reizx.asf-2/lib/arm, /vendor/lib, /system/lib]]] couldn't find "libjniutil.so"
+        //
+        ndk {
+            // 加了其他的文件夹（比如 armeabi-v7a，x86等）可能会出问题
+            abiFilters "armeabi"
+        }
     }
     buildTypes {
         release {
