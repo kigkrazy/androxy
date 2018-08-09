@@ -97,12 +97,6 @@ public class HttpModule {
         return builder.build();
     }
 
-    @Singleton
-    @Provides
-    DataManager provideDataManager(Retrofit.Builder builder, OkHttpClient client) {
-        return new DataManager(builder, client);
-    }
-
     /**
      * 日志拦截器
      */
