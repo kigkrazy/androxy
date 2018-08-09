@@ -1,17 +1,17 @@
-##### # 格式 ： pattern attr1 attr2 ...
-##### # 关闭所有行尾统一
-##### * -text
-##### *
-##### # 启用*.txt行尾统一功能
-##### *.txt text
-##### # 关闭*.txt行尾统一功能
-##### *.txt -text
-##### # 设置*.txt的eol为具体格式
-##### *.txt text eol=lf
-##### *.txt text eol=crlf
-##### # 把文件当做二进制代码处理
-##### *.text -text -diff
-##### *.text binary
-
 # 添加git属性，将所有换行符都转为lf
-*.sh text eol=lf
+#*           text eol=lf
+*.txt       text
+*.sh        text eol=lf
+*.py        text eol=lf
+*.java      text eol=lf
+*.md        text eol=lf
+*.xml       text eol=lf
+*.html      text eol=lf
+
+*.jpg       -text
+*.jar       -text
+*.aar       -text
+*.apk       -text
+*.rar       -text
+*.zip       -text
+*.png       -text
