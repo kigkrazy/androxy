@@ -152,3 +152,10 @@
 -keep class com.orhanobut.logger.**
 -keep class com.orhanobut.logger.** { *; }
 ## logger
+
+
+## AndLinker
+-keep class com.example.andlinker.model.** {
+    public void readFromParcel(android.os.Parcel);
+}
+## AndLinker

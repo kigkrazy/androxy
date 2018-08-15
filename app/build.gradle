@@ -50,7 +50,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //一些常用类库
     //一些常用类库
-    api('com.reizx:andrutil:1.8.1') {
+    api('com.reizx:andrutil:1.8.3') {
         //一个运行时HOOK库
         exclude group: 'me.weishu:epic'
         //一个通过扫描"/proc"文件夹获取安卓所有进程的库（5.x之后停用）
