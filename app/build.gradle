@@ -5,7 +5,7 @@ apply plugin: 'org.qiyi.svg.plugin'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.reizx.esdemo"
+        applicationId "com.reizx.demo"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 2
