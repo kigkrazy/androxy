@@ -1,1 +1,1 @@
-include ':app', ':easyproxy'
+include ':app', ':proxy'
