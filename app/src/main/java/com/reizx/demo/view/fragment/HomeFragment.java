@@ -60,7 +60,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         try{
             Intent intent = LocalVpnService.prepare(baseActivity);
             if (intent != null) {
-                startActivityForResult(intent, START_VPN_SERVICE_REQUEST_CODE);
+                baseActivity.startActivityForResult(intent, START_VPN_SERVICE_REQUEST_CODE);
                 return;
             }
 
