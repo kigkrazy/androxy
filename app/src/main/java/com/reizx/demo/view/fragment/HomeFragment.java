@@ -13,6 +13,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.reizx.androxy.AndroxyHelper;
 import com.reizx.androxy.core.LocalVpnService;
+import com.reizx.androxy.util.AxyLog;
 import com.reizx.demo.R;
 import com.reizx.demo.constant.SPConstants;
 import com.reizx.demo.contract.HomeConstract;
@@ -67,7 +68,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
             String proxyUrl = getProxyUrl();
             AndroxyHelper.startVpnService(baseActivity, proxyUrl);
         }catch (Exception e){
-
+            AxyLog.d("启动代理错误");
         }
     }
 
