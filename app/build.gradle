@@ -68,5 +68,9 @@ dependencies {
     api 'org.qiyi.video.svg:core:1.1.8'
     //material风格UI库
     api 'com.github.rey5137:material:1.2.5'
-    implementation project(':proxy')
+
+    //代理库
+    api (project(':proxy')) {
+        exclude group: 'andrutil'
+    }
 }
