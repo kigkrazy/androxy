@@ -1,6 +1,7 @@
 package com.reizx.androxy.dns;
 
-import com.vm.shadowsocks.tcpip.CommonMethods;
+
+import com.reizx.androxy.tcpip.CommonMethods;
 
 import java.nio.ByteBuffer;
 

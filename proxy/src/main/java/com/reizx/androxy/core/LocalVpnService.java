@@ -11,14 +11,12 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.ParcelFileDescriptor;
 
-import com.vm.shadowsocks.R;
-import com.vm.shadowsocks.core.ProxyConfig.IPAddress;
-import com.vm.shadowsocks.dns.DnsPacket;
-import com.vm.shadowsocks.tcpip.CommonMethods;
-import com.vm.shadowsocks.tcpip.IPHeader;
-import com.vm.shadowsocks.tcpip.TCPHeader;
-import com.vm.shadowsocks.tcpip.UDPHeader;
-import com.vm.shadowsocks.ui.MainActivity;
+import com.reizx.androxy.R;
+import com.reizx.androxy.dns.DnsPacket;
+import com.reizx.androxy.tcpip.CommonMethods;
+import com.reizx.androxy.tcpip.IPHeader;
+import com.reizx.androxy.tcpip.TCPHeader;
+import com.reizx.androxy.tcpip.UDPHeader;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -343,7 +341,7 @@ public class LocalVpnService extends VpnService implements Runnable {
         if (ProxyConfig.IS_DEBUG)
             System.out.printf("setMtu: %d\n", ProxyConfig.Instance.getMTU());
 
-        IPAddress ipAddress = ProxyConfig.Instance.getDefaultLocalIP();
+        ProxyConfig.IPAddress ipAddress = ProxyConfig.Instance.getDefaultLocalIP();
         LOCAL_IP = CommonMethods.ipStringToInt(ipAddress.Address);
         builder.addAddress(ipAddress.Address, ipAddress.PrefixLength);
         if (ProxyConfig.IS_DEBUG)
@@ -394,7 +392,7 @@ public class LocalVpnService extends VpnService implements Runnable {
                 writeLog("Proxy All Apps");
             }
             for (AppInfo app : AppProxyManager.Instance.proxyAppInfo) {
-                builder.addAllowedApplication("com.vm.shadowsocks");//需要把自己加入代理，不然会无法进行网络连接
+                builder.addAllowedApplication("com.reizx.androxy.core");//需要把自己加入代理，不然会无法进行网络连接
                 try {
                     builder.addAllowedApplication(app.getPkgName());
                     writeLog("Proxy App: " + app.getAppLabel());
@@ -407,13 +405,13 @@ public class LocalVpnService extends VpnService implements Runnable {
             writeLog("No Pre-App proxy, due to low Android version.");
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        builder.setConfigureIntent(pendingIntent);
+//        Intent intent = new Intent(this, MainActivity.class);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+//        builder.setConfigureIntent(pendingIntent);
 
         builder.setSession(ProxyConfig.Instance.getSessionName());
         ParcelFileDescriptor pfdDescriptor = builder.establish();
-        onStatusChanged(ProxyConfig.Instance.getSessionName() + getString(R.string.vpn_connected_status), true);
+        onStatusChanged(ProxyConfig.Instance.getSessionName() + "已启动", true);
         return pfdDescriptor;
     }
 
@@ -426,7 +424,7 @@ public class LocalVpnService extends VpnService implements Runnable {
         } catch (Exception e) {
             // ignore
         }
-        onStatusChanged(ProxyConfig.Instance.getSessionName() + getString(R.string.vpn_disconnected_status), false);
+        onStatusChanged(ProxyConfig.Instance.getSessionName() + "已启动", false);
         this.m_VPNOutputStream = null;
     }
 

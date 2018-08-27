@@ -2,8 +2,9 @@ package com.reizx.androxy.tunnel;
 
 import android.annotation.SuppressLint;
 
-import com.vm.shadowsocks.core.LocalVpnService;
-import com.vm.shadowsocks.core.ProxyConfig;
+
+import com.reizx.androxy.core.LocalVpnService;
+import com.reizx.androxy.core.ProxyConfig;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

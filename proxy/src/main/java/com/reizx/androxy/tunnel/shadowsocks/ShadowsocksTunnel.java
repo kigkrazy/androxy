@@ -1,6 +1,6 @@
 package com.reizx.androxy.tunnel.shadowsocks;
 
-import com.vm.shadowsocks.tunnel.Tunnel;
+import com.reizx.androxy.tunnel.Tunnel;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.Selector;

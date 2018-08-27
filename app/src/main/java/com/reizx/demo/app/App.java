@@ -1,6 +1,6 @@
 package com.reizx.demo.app;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.blankj.utilcode.util.Utils;
@@ -17,7 +17,7 @@ import org.qiyi.video.svg.Andromeda;
  * Created by kigkrazy on 18-5-10.
  */
 
-public class App extends Application {
+public class App extends MultiDexApplication {
     private static App app;
     private static AppComponent appComponent;
 

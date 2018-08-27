@@ -2,13 +2,13 @@ package com.reizx.androxy.core;
 
 import android.util.SparseArray;
 
-import com.vm.shadowsocks.dns.DnsPacket;
-import com.vm.shadowsocks.dns.Question;
-import com.vm.shadowsocks.dns.Resource;
-import com.vm.shadowsocks.dns.ResourcePointer;
-import com.vm.shadowsocks.tcpip.CommonMethods;
-import com.vm.shadowsocks.tcpip.IPHeader;
-import com.vm.shadowsocks.tcpip.UDPHeader;
+import com.reizx.androxy.dns.DnsPacket;
+import com.reizx.androxy.dns.Question;
+import com.reizx.androxy.dns.Resource;
+import com.reizx.androxy.dns.ResourcePointer;
+import com.reizx.androxy.tcpip.CommonMethods;
+import com.reizx.androxy.tcpip.IPHeader;
+import com.reizx.androxy.tcpip.UDPHeader;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

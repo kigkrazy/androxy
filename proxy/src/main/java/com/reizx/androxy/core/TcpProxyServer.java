@@ -1,7 +1,7 @@
 package com.reizx.androxy.core;
 
-import com.vm.shadowsocks.tcpip.CommonMethods;
-import com.vm.shadowsocks.tunnel.Tunnel;
+import com.reizx.androxy.tcpip.CommonMethods;
+import com.reizx.androxy.tunnel.Tunnel;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

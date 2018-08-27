@@ -2,7 +2,8 @@ package com.reizx.androxy.core;
 
 import android.util.SparseArray;
 
-import com.vm.shadowsocks.tcpip.CommonMethods;
+import com.reizx.androxy.tcpip.CommonMethods;
+
 
 public class NatSessionManager {
 

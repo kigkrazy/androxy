@@ -2,7 +2,8 @@ package com.reizx.androxy.tunnel.httpconnect;
 
 import android.net.Uri;
 
-import com.vm.shadowsocks.tunnel.Config;
+
+import com.reizx.androxy.tunnel.Config;
 
 import java.net.InetSocketAddress;
 

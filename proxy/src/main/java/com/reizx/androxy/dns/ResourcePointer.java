@@ -1,6 +1,7 @@
 package com.reizx.androxy.dns;
 
-import com.vm.shadowsocks.tcpip.CommonMethods;
+
+import com.reizx.androxy.tcpip.CommonMethods;
 
 public class ResourcePointer {
     static final short offset_Domain = 0;

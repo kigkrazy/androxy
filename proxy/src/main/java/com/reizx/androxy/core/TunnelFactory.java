@@ -1,12 +1,13 @@
 package com.reizx.androxy.core;
 
-import com.vm.shadowsocks.tunnel.Config;
-import com.vm.shadowsocks.tunnel.RawTunnel;
-import com.vm.shadowsocks.tunnel.Tunnel;
-import com.vm.shadowsocks.tunnel.httpconnect.HttpConnectConfig;
-import com.vm.shadowsocks.tunnel.httpconnect.HttpConnectTunnel;
-import com.vm.shadowsocks.tunnel.shadowsocks.ShadowsocksConfig;
-import com.vm.shadowsocks.tunnel.shadowsocks.ShadowsocksTunnel;
+
+import com.reizx.androxy.tunnel.Config;
+import com.reizx.androxy.tunnel.RawTunnel;
+import com.reizx.androxy.tunnel.Tunnel;
+import com.reizx.androxy.tunnel.httpconnect.HttpConnectConfig;
+import com.reizx.androxy.tunnel.httpconnect.HttpConnectTunnel;
+import com.reizx.androxy.tunnel.shadowsocks.ShadowsocksConfig;
+import com.reizx.androxy.tunnel.shadowsocks.ShadowsocksTunnel;
 
 import java.net.InetSocketAddress;
 import java.nio.channels.Selector;

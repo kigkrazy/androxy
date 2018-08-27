@@ -2,7 +2,8 @@ package com.reizx.androxy.core;
 
 import android.util.SparseIntArray;
 
-import com.vm.shadowsocks.tcpip.CommonMethods;
+
+import com.reizx.androxy.tcpip.CommonMethods;
 
 import java.io.IOException;
 import java.io.InputStream;

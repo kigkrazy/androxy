@@ -4,7 +4,7 @@ import android.net.Uri;
 import android.util.Base64;
 import android.util.Log;
 
-import com.vm.shadowsocks.tunnel.Config;
+import com.reizx.androxy.tunnel.Config;
 
 import java.net.InetSocketAddress;
 

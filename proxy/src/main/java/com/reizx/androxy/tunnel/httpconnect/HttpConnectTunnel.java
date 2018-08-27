@@ -1,7 +1,7 @@
 package com.reizx.androxy.tunnel.httpconnect;
 
-import com.vm.shadowsocks.core.ProxyConfig;
-import com.vm.shadowsocks.tunnel.Tunnel;
+import com.reizx.androxy.core.ProxyConfig;
+import com.reizx.androxy.tunnel.Tunnel;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

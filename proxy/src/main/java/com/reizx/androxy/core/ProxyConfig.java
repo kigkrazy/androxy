@@ -3,10 +3,10 @@ package com.reizx.androxy.core;
 import android.annotation.SuppressLint;
 import android.os.Build;
 
-import com.vm.shadowsocks.tcpip.CommonMethods;
-import com.vm.shadowsocks.tunnel.Config;
-import com.vm.shadowsocks.tunnel.httpconnect.HttpConnectConfig;
-import com.vm.shadowsocks.tunnel.shadowsocks.ShadowsocksConfig;
+import com.reizx.androxy.tcpip.CommonMethods;
+import com.reizx.androxy.tunnel.Config;
+import com.reizx.androxy.tunnel.httpconnect.HttpConnectConfig;
+import com.reizx.androxy.tunnel.shadowsocks.ShadowsocksConfig;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
