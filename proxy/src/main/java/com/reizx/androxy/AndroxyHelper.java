@@ -15,11 +15,17 @@ public class AndroxyHelper {
 
     /**
      * 启动
-     * @param context 当前activity
+     *
+     * @param context  当前activity
      * @param proxyUrl 代理url
+     * 代理url格式有三种 ：
+     *       ss://method:password@host:port
+     *       ss://base64encode(method:password@host:port)
+     *
+     *       http://(username:passsword)@host:port
      */
     public static void startVpnService(Context context, String proxyUrl) throws Exception {
-        if (!isValidUrl(proxyUrl)){
+        if (!isValidUrl(proxyUrl)) {
             throw new Exception("the proxy url is valid.");
         }
         new AppProxyManager(context);
@@ -45,7 +51,7 @@ public class AndroxyHelper {
      * @param url
      * @return
      */
-    public static boolean isValidUrl(String url) {
+    private static boolean isValidUrl(String url) {
         try {
             if (url == null || url.isEmpty())
                 return false;
