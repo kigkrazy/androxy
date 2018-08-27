@@ -5,6 +5,15 @@
     <string name="app_stop_service">停止服务</string>
     <string name="app_get_current_ip">获取IP</string>
     <string name="app_get_andromeda_call">Andromeda请求</string>
+
     <string name="app_show_ip_title">当前IP：</string>
     <string name="app_show_ip_description">null</string>
+    <!--新APP下-->
+    <string name="app_home_proxy_host">代理IP</string>
+    <string name="app_home_proxy_port">代理端口</string>
+    <string name="app_home_proxy_user">用户名</string>
+    <string name="app_home_proxy_password">密码</string>
+    <string name="app_home_proxy_encrypt">加密方式</string>
+    <string name="app_home_proxy_mode_shadowsocks">shadowsocks</string>
+    <string name="app_home_proxy_mode_http">http</string>
 </resources>
