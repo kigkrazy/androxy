@@ -31,6 +31,13 @@ public class AndroxyHelper {
     }
 
 
+    /**
+     * 停止代理
+     */
+    public static void stopVpnService() throws Exception {
+        LocalVpnService.IsRunning = false;
+    }
+
 
     /**
      * 检验配置url是否正确
