@@ -32,7 +32,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     api 'org.bouncycastle:bcprov-jdk15on:1.57'
-    api ('com.futuremind.recyclerfastscroll:fastscroll:0.2.5'){
-        exclude group: 'com.android.support'
-    }
 }
