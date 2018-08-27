@@ -1,2 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.reizx.androxy" />
+    package="com.reizx.androxy">
+    <application>
+        <service android:name=".core.LocalVpnService"/>
+    </application>
+</manifest>
