@@ -100,26 +100,26 @@ public class LocalVpnService extends VpnService implements Runnable {
     }
 
     private void onStatusChanged(final String status, final boolean isRunning) {
-        m_Handler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (Map.Entry<onStatusChangedListener, Object> entry : m_OnStatusChangedListeners.entrySet()) {
-                    entry.getKey().onStatusChanged(status, isRunning);
-                }
-            }
-        });
+//        m_Handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                for (Map.Entry<onStatusChangedListener, Object> entry : m_OnStatusChangedListeners.entrySet()) {
+//                    entry.getKey().onStatusChanged(status, isRunning);
+//                }
+//            }
+//        });
     }
 
     public void writeLog(final String format, Object... args) {
-        final String logString = String.format(format, args);
-        m_Handler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (Map.Entry<onStatusChangedListener, Object> entry : m_OnStatusChangedListeners.entrySet()) {
-                    entry.getKey().onLogReceived(logString);
-                }
-            }
-        });
+//        final String logString = String.format(format, args);
+//        m_Handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                for (Map.Entry<onStatusChangedListener, Object> entry : m_OnStatusChangedListeners.entrySet()) {
+//                    entry.getKey().onLogReceived(logString);
+//                }
+//            }
+//        });
     }
 
     public void sendUDPPacket(IPHeader ipHeader, UDPHeader udpHeader) {

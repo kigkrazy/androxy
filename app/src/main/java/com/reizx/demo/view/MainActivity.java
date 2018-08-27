@@ -2,9 +2,12 @@ package com.reizx.demo.view;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
+import com.reizx.androxy.AndroxyHelper;
 import com.reizx.demo.R;
 import com.reizx.demo.contract.MainActivityContract;
 import com.reizx.demo.presenter.MainActivityPresenter;
@@ -15,6 +18,8 @@ import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import io.reactivex.functions.Consumer;
+
+import static com.reizx.androxy.AndroxyHelper.START_VPN_SERVICE_REQUEST_CODE;
 
 public class MainActivity extends BaseActivity<MainActivityPresenter> implements MainActivityContract.View {
     @Override
@@ -75,6 +80,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
 
     /**
      * 切换主fragment
+     *
      * @param fragment
      */
     @Override
@@ -87,5 +93,20 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                 .replace(R.id.fragment_app_main, fragment, tagName)
                 .addToBackStack(tagName)
                 .commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
+            if (requestCode == START_VPN_SERVICE_REQUEST_CODE) {
+                if (resultCode == RESULT_OK) {
+                    AndroxyHelper.startVpnService(AndroxyHelper.context, AndroxyHelper.proxyUrl);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

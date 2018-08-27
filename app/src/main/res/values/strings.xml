@@ -6,7 +6,7 @@
     <string name="app_get_current_ip">获取IP</string>
     <string name="app_get_andromeda_call">Andromeda请求</string>
 
-    <string name="app_show_ip_title">当前IP：</string>
+    <string name="app_log">当前IP：</string>
     <string name="app_show_ip_description">null</string>
     <!--新APP下-->
     <string name="app_home_proxy_host">代理IP</string>

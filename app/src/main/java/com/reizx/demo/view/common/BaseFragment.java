@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ToastUtils;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.reizx.demo.app.App;
-import com.reizx.demo.bean.event.TipEvent;
-import com.reizx.demo.component.RxBus;
 import com.reizx.demo.di.component.DaggerFragmentComponent;
 import com.reizx.demo.di.component.FragmentComponent;
 import com.reizx.demo.di.module.FragmentModule;
@@ -73,8 +71,8 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
         unbinder = ButterKnife.bind(this, rootView);
         baseActivity = (BaseActivity) getActivity();
         initInject();//设置presenter注入
-        initAllMembersView();//初始化一些VIEW对象
         presenter.attachView(this);
+        onCreateViewFinish();//初始化一些VIEW对象
         return rootView;
     }
 
@@ -98,7 +96,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
      *
      * @return
      */
-    public void initAllMembersView(){
+    public void onCreateViewFinish(){
 
     }
 

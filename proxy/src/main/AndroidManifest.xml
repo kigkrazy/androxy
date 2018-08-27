@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.reizx.androxy">
+    <uses-permission android:name="android.permission.BIND_VPN_SERVICE" tools:ignore="ProtectedPermissions" />
     <application>
-        <service android:name=".core.LocalVpnService"/>
+        <service android:name=".core.LocalVpnService" android:permission="android.permission.BIND_VPN_SERVICE"/>
     </application>
 </manifest>

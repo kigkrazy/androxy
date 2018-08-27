@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.reizx.demo.presenter.common.IBasePresenter;
 import com.reizx.demo.view.common.BaseView;
+import com.white.easysp.EasySP;
 
 /**
  * 主页的借口约定类
@@ -21,26 +22,12 @@ public class HomeConstract {
         /**
          * 开始zookeeper的前台服务
          */
-        void startZkService(Context context);
+        void startProxyService(Context context);
 
         /**
-         * 开始zookeeper的前台服务
+         * 获取sp管理对象
+         * @return
          */
-        void stopZkService(Context context);
-
-        /**
-         * 绑定zookeeper的服务（用于测试）
-         */
-        void bindZkService();
-
-        /**
-         * 请求zookeeper的接口（用于测试）
-         */
-        void callHelloZkService();
-
-        /**
-         * 从IP138接口请求，并且显示当前IP
-         */
-        void showCurrentIp();
+        public EasySP getEastSP();
     }
 }

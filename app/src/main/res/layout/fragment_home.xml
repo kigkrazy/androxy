@@ -35,7 +35,7 @@
                     android:text="@string/app_home_proxy_host" />
 
                 <EditText
-                    android:id="@+id/et_app_proxy_host"
+                    android:id="@+id/et_app_home_proxy_host"
                     style="@style/QDCommonEdit"
                     android:layout_width="0dp"
                     android:layout_weight="3"
@@ -56,7 +56,7 @@
                     android:text="@string/app_home_proxy_port" />
 
                 <EditText
-                    android:id="@+id/et_app_proxy_port"
+                    android:id="@+id/et_app_home_proxy_port"
                     style="@style/QDCommonEdit"
                     android:layout_width="0dp"
                     android:layout_weight="3"
@@ -77,7 +77,7 @@
                     android:text="@string/app_home_proxy_user" />
 
                 <EditText
-                    android:id="@+id/et_app_home_proxy_port"
+                    android:id="@+id/et_app_home_proxy_user"
                     style="@style/QDCommonEdit"
                     android:layout_width="0dp"
                     android:layout_weight="3"
@@ -120,6 +120,7 @@
                 <EditText
                     android:id="@+id/et_app_home_proxy_password"
                     style="@style/QDCommonEdit"
+                    android:inputType="textPassword"
                     android:layout_width="0dp"
                     android:layout_weight="3"
                     android:singleLine="true" />
@@ -132,13 +133,13 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/rg_home_proxy_mode_ss"
+                    android:id="@+id/rb_home_proxy_mode_ss"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_home_proxy_mode_shadowsocks" />
 
                 <RadioButton
-                    android:id="@+id/rg_home_proxy_mode_http"
+                    android:id="@+id/rb_home_proxy_mode_http"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_home_proxy_mode_http" />
@@ -149,7 +150,6 @@
                 style="@style/NormalRoundButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/app_start_service" />
 
@@ -158,49 +158,15 @@
                 style="@style/NormalRoundButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/app_stop_service" />
-
-            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-                android:id="@+id/btn_app_request_ip"
-                style="@style/NormalRoundButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/app_get_current_ip" />
-
-
-            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-                android:id="@+id/btn_app_andromeda_call"
-                style="@style/NormalRoundButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/app_get_andromeda_call" />
+                android:text="@string/app_start_service" />
 
             <TextView
-                android:id="@+id/tv_app_show_ip_title"
+                android:id="@+id/tv_app_home_log"
                 style="@style/QDCommonTitle"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/app_show_ip_title" />
-
-            <TextView
-                android:id="@+id/tv_app_show_ip_des"
-                style="@style/QDCommonDescription"
-                android:layout_marginHorizontal="15dp"
-                android:gravity="top"
-                android:text="@string/app_show_ip_description" />
-
-            <CheckBox
-                android:id="@+id/shenzhen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/qmui_s_checkbox"
-                android:text="深圳" />
+                android:text="@string/app_log"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

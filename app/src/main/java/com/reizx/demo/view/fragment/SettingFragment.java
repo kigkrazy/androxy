@@ -3,7 +3,6 @@ package com.reizx.demo.view.fragment;
 import android.annotation.SuppressLint;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.ShellUtils;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.reizx.demo.R;
 import com.reizx.demo.contract.SettingContract;
@@ -66,8 +65,8 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
     }
 
     @Override
-    public void initAllMembersView() {
-        super.initAllMembersView();
+    public void onCreateViewFinish() {
+        super.onCreateViewFinish();
         initTopBar();
     }
 

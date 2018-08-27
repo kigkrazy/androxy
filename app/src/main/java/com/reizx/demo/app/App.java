@@ -27,8 +27,8 @@ public class App extends MultiDexApplication {
         app = this;
         //初始化日志环境，设置全局
 
-        Log.d("asf-tag", "asf-tag onCreate...");
-        initLog("asf-tag");
+        Log.d("androxy-tag", "asf-tag onCreate...");
+        initLog("androxy-tag");
         Utils.init(this);//初始化AndroidUtilCode库
         Andromeda.init(app);
     }

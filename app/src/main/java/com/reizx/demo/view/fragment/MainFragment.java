@@ -29,7 +29,7 @@ public class MainFragment extends BaseFragment<MainPresenter> implements MainCon
     }
 
     @Override
-    public void initAllMembersView() {
+    public void onCreateViewFinish() {
         initTabs();//初始化tab以及对应界面
     }
 
