@@ -31,5 +31,30 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    api('com.reizx:andrutil:1.8.3'){
+        //retrofit2 相关
+        exclude group: 'com.squareup.retrofit2'
+        //rxjava2相关的库
+        exclude group: 'io.reactivex.rxjava2'
+        //okhttp3相关
+        exclude group: 'com.squareup.okhttp3'
+        exclude group: 'com.squareup.okio'
+        //一个运行时HOOK库
+        exclude group: 'me.weishu:epic'
+        //一个通过扫描"/proc"文件夹获取安卓所有进程的库（5.x之后停用）
+        exclude group: 'com.jaredrummler'
+
+        //okhttputils是一个安卓上方便HTTP请求的工具类，作为retrofit的一个应用场景补充。
+        //一般retrofit不好解决的场景，我们才引入它，所以我们一般将它排除。
+        exclude module: 'okhttputils'
+
+        //xlog
+        //exclude module: 'xlog'
+        exclude module: 'logger'
+
+        //一个远程IPC库
+        exclude module: 'andlinker'
+    }
+
     api 'org.bouncycastle:bcprov-jdk15on:1.57'
 }

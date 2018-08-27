@@ -7,12 +7,16 @@ import android.net.Uri;
 import com.reizx.androxy.core.AppProxyManager;
 import com.reizx.androxy.core.LocalVpnService;
 import com.reizx.androxy.core.ProxyConfig;
+import com.reizx.androxy.util.AxyLog;
 
 public class AndroxyHelper {
     public static final int START_VPN_SERVICE_REQUEST_CODE = 1985;
     public static String proxyUrl;
     public static Context context;
 
+    static {
+        AxyLog.initLog("androxy-tag");
+    }
     /**
      * 启动
      *
@@ -40,7 +44,7 @@ public class AndroxyHelper {
     /**
      * 停止代理
      */
-    public static void stopVpnService() throws Exception {
+    public static void stopVpnService() {
         LocalVpnService.IsRunning = false;
     }
 

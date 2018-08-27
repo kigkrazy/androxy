@@ -73,7 +73,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
     @OnClick(R.id.btn_app_stop_service)
     public void stopProxyService() {
-        LocalVpnService.IsRunning = false;
+        AndroxyHelper.stopVpnService();
 //        if (!ServiceUtils.isServiceRunning(LocalVpnService.class)) {
 //            AsfLog.d("the proxy is not running...");
 //            return;
