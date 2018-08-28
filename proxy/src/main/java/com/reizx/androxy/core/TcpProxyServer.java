@@ -2,6 +2,7 @@ package com.reizx.androxy.core;
 
 import com.reizx.androxy.tcpip.CommonMethods;
 import com.reizx.androxy.tunnel.Tunnel;
+import com.reizx.androxy.util.AxyLog;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -27,7 +28,7 @@ public class TcpProxyServer implements Runnable {
         m_ServerSocketChannel.socket().bind(new InetSocketAddress(port));
         m_ServerSocketChannel.register(m_Selector, SelectionKey.OP_ACCEPT);
         this.Port = (short) m_ServerSocketChannel.socket().getLocalPort();
-        System.out.printf("AsyncTcpServer listen on %d success.\n", this.Port & 0xFFFF);
+        AxyLog.dd("AsyncTcpServer listen on %d success.\n", this.Port & 0xFFFF);
     }
 
     public void start() {
@@ -97,7 +98,7 @@ public class TcpProxyServer implements Runnable {
         if (session != null) {
             if (ProxyConfig.Instance.needProxy(session.RemoteHost, session.RemoteIP)) {
                 if (ProxyConfig.IS_DEBUG)
-                    System.out.printf("%d/%d:[PROXY] %s=>%s:%d\n", NatSessionManager.getSessionCount(), Tunnel.SessionCount, session.RemoteHost, CommonMethods.ipIntToString(session.RemoteIP), session.RemotePort & 0xFFFF);
+                    AxyLog.dd("%d/%d:[PROXY] %s=>%s:%d\n", NatSessionManager.getSessionCount(), Tunnel.SessionCount, session.RemoteHost, CommonMethods.ipIntToString(session.RemoteIP), session.RemotePort & 0xFFFF);
                 return InetSocketAddress.createUnresolved(session.RemoteHost, session.RemotePort & 0xFFFF);
             } else {
                 return new InetSocketAddress(localChannel.socket().getInetAddress(), session.RemotePort & 0xFFFF);

@@ -109,6 +109,7 @@ public class LocalVpnService extends VpnService implements Runnable {
     }
 
     public void writeLog(final String format, Object... args) {
+        AxyLog.dd(format, args);
 //        final String logString = String.format(format, args);
 //        m_Handler.post(new Runnable() {
 //            @Override
@@ -157,7 +158,6 @@ public class LocalVpnService extends VpnService implements Runnable {
     public synchronized void run() {
         try {
             AxyLog.dd("VPNService(%s) work thread is runing...\n", ID);
-
             ProxyConfig.AppInstallID = getAppInstallID();//获取安装ID
             ProxyConfig.AppVersion = getVersionName();//获取版本号
             AxyLog.dd("AppInstallID: %s", ProxyConfig.AppInstallID);
@@ -168,7 +168,7 @@ public class LocalVpnService extends VpnService implements Runnable {
             ChinaIpMaskManager.loadFromFile(getResources().openRawResource(R.raw.ipmask));//加载中国的IP段，用于IP分流。
             waitUntilPreapred();//检查是否准备完毕。
 
-            writeLog("Load config from file ...");
+            AxyLog.d("Load config from file ...");
             try {
                 ProxyConfig.Instance.loadFromFile(getResources().openRawResource(R.raw.config));
                 writeLog("Load done");
@@ -180,10 +180,10 @@ public class LocalVpnService extends VpnService implements Runnable {
                 writeLog("Load failed with error: %s", errString);
             }
 
+            //本地代理服务
             m_TcpProxyServer = new TcpProxyServer(0);
             m_TcpProxyServer.start();
             writeLog("LocalTcpServer started.");
-
             m_DnsProxy = new DnsProxy();
             m_DnsProxy.start();
             writeLog("LocalDnsProxy started.");
@@ -228,12 +228,16 @@ public class LocalVpnService extends VpnService implements Runnable {
         }
     }
 
+    /**
+     * 开始VPN
+     * @throws Exception
+     */
     private void runVPN() throws Exception {
         this.m_VPNInterface = establishVPN();
         this.m_VPNOutputStream = new FileOutputStream(m_VPNInterface.getFileDescriptor());
         FileInputStream in = new FileInputStream(m_VPNInterface.getFileDescriptor());
         int size = 0;
-        while (size != -1 && IsRunning) {
+        while (size != -1 && IsRunning) {//size=-1表示文件流关闭读不到数据了
             while ((size = in.read(m_Packet)) > 0 && IsRunning) {
                 if (m_DnsProxy.Stopped || m_TcpProxyServer.Stopped) {
                     in.close();
@@ -383,6 +387,7 @@ public class LocalVpnService extends VpnService implements Runnable {
             }
         }
 
+        // 控制走代理的APP
         if (AppProxyManager.isLollipopOrAbove) {
             if (AppProxyManager.Instance.proxyAppInfo.size() == 0) {
                 writeLog("Proxy All Apps");
