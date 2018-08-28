@@ -60,9 +60,20 @@ public class AxyLog {
      * @param tag 日志TAG
      */
     public static void initLog(String tag) {
+        initLog(LogLevel.ALL, tag);
+    }
+
+
+    /**
+     * 初始化Log，这个初始化只会打印到控制台
+     *
+     * @param level 低于level的将不会被打印。值请参考 {@link LogLevel}
+     * @param tag   日志TAG
+     */
+    public static void initLog(int level, String tag) {
         XLog.init(LogLevel.ALL);//初始化否则报错
         Printer androidPrinter = new AndroidPrinter();
-        initLog(tag, androidPrinter);
+        buildLogger(level, tag, androidPrinter);
     }
 
     /**
@@ -72,6 +83,16 @@ public class AxyLog {
      * @param logDir 打印日志保存文件的地址
      */
     public static void initLog(String tag, String logDir) {
+        initLog(LogLevel.ALL, tag, logDir);
+    }
+
+    /**
+     * 初始化Log，这个初始化会打印到控制台和文件
+     *
+     * @param tag    日志TAG
+     * @param logDir 打印日志保存文件的地址
+     */
+    public static void initLog(int level, String tag, String logDir) {
         Printer androidPrinter = new AndroidPrinter();                                      // 通过 android.util.Log 打印日志的打印器
         AxyLog.HistoryDateFileNameGenerator fileNameGenerator = new AxyLog.HistoryDateFileNameGenerator(3, logDir);
         Printer filePrinter = new FilePrinter                                               // 打印日志到文件的打印器
@@ -81,13 +102,19 @@ public class AxyLog {
                 .logFlattener(new DefaultFlattener())                                       // 指定日志平铺器，默认为 DefaultFlattener
                 .build();
 
-        initLog(tag, androidPrinter, filePrinter);
+        buildLogger(level, tag, androidPrinter, filePrinter);
     }
 
-    public static void initLog(String tag, Printer... printers) {
+    /**
+     * @param level    see {@link LogLevel}低于level的将不会被打印
+     * @param tag
+     * @param printers
+     */
+    private static void buildLogger(int level, String tag, Printer... printers) {
         logger = new Logger.Builder()
                 .nt()
                 .tag(tag)
+                .logLevel(level)
                 .nb()
                 .nst()
                 .printers(printers)
@@ -140,11 +167,11 @@ public class AxyLog {
         logger.v(message);
     }
 
-    public static void vv(@NonNull String message, Object ...args) {
+    public static void vv(@NonNull String message, Object... args) {
         logger.v(String.format(message, args));
     }
 
-    public static void vvt(@NonNull String tag, @NonNull String message, Object ...args) {
+    public static void vvt(@NonNull String tag, @NonNull String message, Object... args) {
         message = String.format("[%s] : %s", tag, String.format(message, args));
         logger.v(message);
     }
@@ -158,11 +185,11 @@ public class AxyLog {
         logger.w(message);
     }
 
-    public static void ww(@NonNull String message, Object ...args) {
+    public static void ww(@NonNull String message, Object... args) {
         logger.w(String.format(message, args));
     }
 
-    public static void wwt(@NonNull String tag, @NonNull String message, Object ...args) {
+    public static void wwt(@NonNull String tag, @NonNull String message, Object... args) {
         message = String.format("[%s] : %s", tag, String.format(message, args));
         logger.w(message);
     }
@@ -177,11 +204,11 @@ public class AxyLog {
         logger.e(message);
     }
 
-    public static void ee(@NonNull String message, Object ...args) {
+    public static void ee(@NonNull String message, Object... args) {
         logger.e(String.format(message, args));
     }
 
-    public static void eet(@NonNull String tag, @NonNull String message, Object ...args) {
+    public static void eet(@NonNull String tag, @NonNull String message, Object... args) {
         message = String.format("[%s] : %s", tag, String.format(message, args));
         logger.e(message);
     }
