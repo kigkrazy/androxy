@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.reizx.androxy.AndroxyHelper;
+import com.reizx.androxy.activity.ProxyActivity;
 import com.reizx.demo.R;
 import com.reizx.demo.contract.MainActivityContract;
 import com.reizx.demo.presenter.MainActivityPresenter;
@@ -100,7 +101,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         try {
             if (requestCode == START_VPN_SERVICE_REQUEST_CODE) {
                 if (resultCode == RESULT_OK) {
-                    AndroxyHelper.startVpnService(AndroxyHelper.context, AndroxyHelper.proxyUrl);
+                    AndroxyHelper.startVpnService(ProxyActivity.context, ProxyActivity.proxyUrl);
                 }
             }
         } catch (Exception e) {

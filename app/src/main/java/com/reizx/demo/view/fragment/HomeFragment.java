@@ -59,12 +59,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     @OnClick(R.id.btn_app_start_service)
     public void startProxyService() {
         try{
-            Intent intent = LocalVpnService.prepare(baseActivity);
-            if (intent != null) {
-                baseActivity.startActivityForResult(intent, START_VPN_SERVICE_REQUEST_CODE);
-                return;
-            }
-
             String proxyUrl = getProxyUrl();
             AndroxyHelper.startVpnService(baseActivity, proxyUrl);
         }catch (Exception e){

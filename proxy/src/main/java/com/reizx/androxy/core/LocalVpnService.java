@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.ParcelFileDescriptor;
 
 import com.reizx.androxy.R;
+import com.reizx.androxy.andlinker.VpnServiceIpc;
 import com.reizx.androxy.dns.DnsPacket;
 import com.reizx.androxy.tcpip.CommonMethods;
 import com.reizx.androxy.tcpip.IPHeader;

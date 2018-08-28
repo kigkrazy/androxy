@@ -3,6 +3,12 @@
     package="com.reizx.androxy">
     <uses-permission android:name="android.permission.BIND_VPN_SERVICE" tools:ignore="ProtectedPermissions" />
     <application>
+        <activity
+            android:name=".activity.ProxyActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:multiprocess="true"
+            android:theme="@style/ActivityTranslucent"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <service android:name=".core.LocalVpnService" android:permission="android.permission.BIND_VPN_SERVICE"/>
     </application>
 </manifest>

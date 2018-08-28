@@ -4,9 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.reizx.androxy.core.AppProxyManager;
+import com.reizx.androxy.activity.ProxyActivity;
 import com.reizx.androxy.core.LocalVpnService;
-import com.reizx.androxy.core.ProxyConfig;
 import com.reizx.androxy.util.AxyLog;
 
 public class AndroxyHelper {
@@ -32,12 +31,16 @@ public class AndroxyHelper {
         if (!isValidUrl(proxyUrl)) {
             throw new Exception("the proxy url is valid.");
         }
-        new AppProxyManager(context);
-        ProxyConfig.Instance.globalMode = true;
-        AndroxyHelper.context = context;
-        AndroxyHelper.proxyUrl = proxyUrl;
-        LocalVpnService.ProxyUrl = proxyUrl;
-        context.startService(new Intent(context, LocalVpnService.class));
+        ProxyActivity.start(context, proxyUrl);
+        //new AppProxyManager(context);
+//        Intent intent = new Intent(context, ProxyActivity.class);
+//        context.startActivity(intent);
+//        new AppProxyManager(context);
+//        ProxyConfig.Instance.globalMode = true;
+//        AndroxyHelper.context = context;
+//        AndroxyHelper.proxyUrl = proxyUrl;
+//        LocalVpnService.ProxyUrl = proxyUrl;
+//        context.startService(new Intent(context, LocalVpnService.class));
     }
 
 
