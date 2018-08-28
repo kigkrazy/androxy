@@ -94,6 +94,7 @@ public class AxyLog {
                 .build();
     }
 
+    //region 打印接口
     public static void d(@NonNull String message) {
         logger.d(message);
     }
@@ -184,6 +185,7 @@ public class AxyLog {
         message = String.format("[%s] : %s", tag, String.format(message, args));
         logger.e(message);
     }
+    //endregion
 
     /**
      * Formats the given json content and print it
