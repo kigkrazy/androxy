@@ -1,6 +1,5 @@
 package com.reizx.androxy.core;
 
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -17,6 +16,7 @@ import com.reizx.androxy.tcpip.CommonMethods;
 import com.reizx.androxy.tcpip.IPHeader;
 import com.reizx.androxy.tcpip.TCPHeader;
 import com.reizx.androxy.tcpip.UDPHeader;
+import com.reizx.androxy.util.AxyLog;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,19 +24,17 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class LocalVpnService extends VpnService implements Runnable {
-
     public static LocalVpnService Instance;
     public static String ProxyUrl;
     public static boolean IsRunning = false;
 
     private static int ID;
     private static int LOCAL_IP;
-    private static ConcurrentHashMap<onStatusChangedListener, Object> m_OnStatusChangedListeners = new ConcurrentHashMap<onStatusChangedListener, Object>();
+    private static ConcurrentHashMap<onStatusChangedListener, Object> m_OnStatusChangedListeners = new ConcurrentHashMap<>();
 
     private Thread m_VPNThread;
     private ParcelFileDescriptor m_VPNInterface;
@@ -63,12 +61,12 @@ public class LocalVpnService extends VpnService implements Runnable {
         m_DNSBuffer = ((ByteBuffer) ByteBuffer.wrap(m_Packet).position(28)).slice();
         Instance = this;
 
-        System.out.printf("New VPNService(%d)\n", ID);
+        AxyLog.dd("New VPNService(%d)\n", ID);
     }
 
     @Override
     public void onCreate() {
-        System.out.printf("VPNService(%s) created.\n", ID);
+        AxyLog.dd("VPNService(%s) created.\n", ID);
         // Start a new session by creating a new thread.
         m_VPNThread = new Thread(this, "VPNServiceThread");
         m_VPNThread.start();
@@ -158,11 +156,11 @@ public class LocalVpnService extends VpnService implements Runnable {
     @Override
     public synchronized void run() {
         try {
-            System.out.printf("VPNService(%s) work thread is runing...\n", ID);
+            AxyLog.dd("VPNService(%s) work thread is runing...\n", ID);
 
             ProxyConfig.AppInstallID = getAppInstallID();//获取安装ID
             ProxyConfig.AppVersion = getVersionName();//获取版本号
-            System.out.printf("AppInstallID: %s\n", ProxyConfig.AppInstallID);
+            AxyLog.dd("AppInstallID: %s", ProxyConfig.AppInstallID);
             writeLog("Android version: %s", Build.VERSION.RELEASE);
             writeLog("App version: %s", ProxyConfig.AppVersion);
 
@@ -193,7 +191,6 @@ public class LocalVpnService extends VpnService implements Runnable {
             while (true) {
                 if (IsRunning) {
                     //加载配置文件
-
                     writeLog("set shadowsocks/(http proxy)");
                     try {
                         ProxyConfig.Instance.m_ProxyList.clear();
@@ -267,10 +264,9 @@ public class LocalVpnService extends VpnService implements Runnable {
                             m_VPNOutputStream.write(ipHeader.m_Data, ipHeader.m_Offset, size);
                             m_ReceivedBytes += size;
                         } else {
-                            System.out.printf("NoSession: %s %s\n", ipHeader.toString(), tcpHeader.toString());
+                            AxyLog.dd("NoSession: %s %s\n", ipHeader.toString(), tcpHeader.toString());
                         }
                     } else {
-
                         // 添加端口映射
                         int portKey = tcpHeader.getSourcePort();
                         NatSession session = NatSessionManager.getSession(portKey);
@@ -293,7 +289,7 @@ public class LocalVpnService extends VpnService implements Runnable {
                             if (host != null) {
                                 session.RemoteHost = host;
                             } else {
-                                System.out.printf("No host name found: %s", session.RemoteHost);
+                                AxyLog.dd("No host name found: %s", session.RemoteHost);
                             }
                         }
 
@@ -339,34 +335,34 @@ public class LocalVpnService extends VpnService implements Runnable {
         Builder builder = new Builder();
         builder.setMtu(ProxyConfig.Instance.getMTU());
         if (ProxyConfig.IS_DEBUG)
-            System.out.printf("setMtu: %d\n", ProxyConfig.Instance.getMTU());
+            AxyLog.dd("setMtu: %d\n", ProxyConfig.Instance.getMTU());
 
         ProxyConfig.IPAddress ipAddress = ProxyConfig.Instance.getDefaultLocalIP();
         LOCAL_IP = CommonMethods.ipStringToInt(ipAddress.Address);
         builder.addAddress(ipAddress.Address, ipAddress.PrefixLength);
         if (ProxyConfig.IS_DEBUG)
-            System.out.printf("addAddress: %s/%d\n", ipAddress.Address, ipAddress.PrefixLength);
+            AxyLog.dd("addAddress: %s/%d\n", ipAddress.Address, ipAddress.PrefixLength);
 
         for (ProxyConfig.IPAddress dns : ProxyConfig.Instance.getDnsList()) {
             builder.addDnsServer(dns.Address);
             if (ProxyConfig.IS_DEBUG)
-                System.out.printf("addDnsServer: %s\n", dns.Address);
+                AxyLog.dd("addDnsServer: %s\n", dns.Address);
         }
 
         if (ProxyConfig.Instance.getRouteList().size() > 0) {
             for (ProxyConfig.IPAddress routeAddress : ProxyConfig.Instance.getRouteList()) {
                 builder.addRoute(routeAddress.Address, routeAddress.PrefixLength);
                 if (ProxyConfig.IS_DEBUG)
-                    System.out.printf("addRoute: %s/%d\n", routeAddress.Address, routeAddress.PrefixLength);
+                    AxyLog.dd("addRoute: %s/%d\n", routeAddress.Address, routeAddress.PrefixLength);
             }
             builder.addRoute(CommonMethods.ipIntToString(ProxyConfig.FAKE_NETWORK_IP), 16);
 
             if (ProxyConfig.IS_DEBUG)
-                System.out.printf("addRoute for FAKE_NETWORK: %s/%d\n", CommonMethods.ipIntToString(ProxyConfig.FAKE_NETWORK_IP), 16);
+                AxyLog.dd("addRoute for FAKE_NETWORK: %s/%d\n", CommonMethods.ipIntToString(ProxyConfig.FAKE_NETWORK_IP), 16);
         } else {
             builder.addRoute("0.0.0.0", 0);
             if (ProxyConfig.IS_DEBUG)
-                System.out.printf("addDefaultRoute: 0.0.0.0/0\n");
+                AxyLog.dd("addDefaultRoute: 0.0.0.0/0\n");
         }
 
 
@@ -383,7 +379,7 @@ public class LocalVpnService extends VpnService implements Runnable {
                     builder.addRoute(value, 128);
                 }
                 if (ProxyConfig.IS_DEBUG)
-                    System.out.printf("%s=%s\n", name, value);
+                    AxyLog.dd("%s=%s\n", name, value);
             }
         }
 
@@ -404,10 +400,6 @@ public class LocalVpnService extends VpnService implements Runnable {
         } else {
             writeLog("No Pre-App proxy, due to low Android version.");
         }
-
-//        Intent intent = new Intent(this, MainActivity.class);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-//        builder.setConfigureIntent(pendingIntent);
 
         builder.setSession(ProxyConfig.Instance.getSessionName());
         ParcelFileDescriptor pfdDescriptor = builder.establish();
@@ -453,7 +445,7 @@ public class LocalVpnService extends VpnService implements Runnable {
 
     @Override
     public void onDestroy() {
-        System.out.printf("VPNService(%s) destoried.\n", ID);
+        AxyLog.dd("VPNService(%s) destoried.\n", ID);
         if (m_VPNThread != null) {
             m_VPNThread.interrupt();
         }
